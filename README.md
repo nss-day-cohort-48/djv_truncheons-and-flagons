@@ -1,2 +1,4 @@
-# djv_truncheons-and-flagons
-Devin Garcia, Jonathan Watson, Val Currie
+# Truncheons and Flagons
+### as implemented by: Devin Garcia, Jonathan Watson, Val Currie
+
+[click here for ambience](https://www.youtube.com/watch?v=rv3Nl-Od9YU)
