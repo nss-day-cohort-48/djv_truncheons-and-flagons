@@ -92,13 +92,13 @@ const database = {
     {
       id: 1,
       teamId: 1,
-      score: 0,
+      score: 1,
       timestamp: rightNow,
     },
     {
       id: 2,
       teamId: 2,
-      score: 0,
+      score: 2,
       timestamp: rightNow,
     },
     {
@@ -110,13 +110,13 @@ const database = {
     {
       id: 4,
       teamId: 1,
-      score: 0,
+      score: 1,
       timestamp: hundredSecondsLater,
     },
     {
       id: 5,
       teamId: 2,
-      score: 0,
+      score: 2,
       timestamp: hundredSecondsLater,
     },
     {
