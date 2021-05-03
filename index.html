@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Truncheons & Flagons</title>
 </head>
+
 <body class="container">
 
-    
+    <h1 class="logo">Truncheons & Flagons</h1>
+    <div class="selectTeamSection"></div>
+
+    <div class="selectTeamSectionDropdown">
+        <label for="teams">Select a team:</label>
+        <select name="teams">
+            <option>Select team 1:</option>      
+    <option>Team 1</option>
+    <option>Team 2</option>
+    <option>Team 3</option>
+    </select>
+        <select name="teams">
+            <option>Select team 2:</option> 
+        <option>Team 1</option>
+        <option>Team 2</option>
+        <option>Team 3</option>
+        </select>
+        <select name="teams">
+            <option>Select team 3:</option> 
+            <option>Team 1</option>
+            <option>Team 2</option>
+            <option>Team 3</option>
+            </select>
+        <button class="startGameButton">Start Game</button>
+    </div>
+
+    <div class="newTeamForm">
+        <form>
+            <label for="firstName">First name:</label><br>
+            <input type="text" id="firstName" name="firstName"><br>
+            <label for="lastname">Last name:</label><br>
+            <input type="text" id="lastName" name="lastName"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
 </body>
+
 </html>
