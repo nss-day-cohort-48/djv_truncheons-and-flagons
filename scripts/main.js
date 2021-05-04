@@ -1,4 +1,4 @@
-import { truncheonsHTML } from "./truncheons";
+import { truncheonsHTML } from "./truncheons.js";
 
 const container = document.querySelector(".container");
 const render = () => {
