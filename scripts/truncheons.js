@@ -12,7 +12,7 @@ export const introHTML = () => {
   return /*html*/ `
   <h1 class="logo">Truncheons & Flagons</h1>
   <button class="newGameButton">Set Up New Game</button>
-  <div>
+  <div class="leaderboardContainer">
     <h3>Current Leaderboard</h3>
     <ul>
       <li> #1: The Flo Rida Fan Club -- 4 points</li>
