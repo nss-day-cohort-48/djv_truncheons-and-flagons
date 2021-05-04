@@ -7,3 +7,5 @@ const render = () => {
 };
 
 document.addEventListener("stateChanged", () => render());
+
+render();
