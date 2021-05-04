@@ -2,42 +2,33 @@ import { getScores } from "./database.js";
 import { getPlayers } from "./database.js";
 import { getTeams } from "./database.js";
 
-let scores = getScores();
-let teams = getTeams();
-let players = getPlayers();
-
-const storeScore = (scoreObj) => {
-  const thisTeam = teams.find((tObj) => tObj.id === scoreObj.teamId);
-  // QUESTION: do I really have to do another find to get the index? Maybe I should use a for loop...
-  const thisTeamIndex = teams.findIndex((tObj) => tObj.id === thisTeam.id);
-  if (!("score" in thisTeam)) {
-    // make sure we store in the teams array defined within the Leaderboard module
-    teams[thisTeamIndex].score = 0;
-  }
-  // again, thisTeam is a copy so we have to operate on the teams array directly
-  teams[thisTeamIndex].score += scoreObj.score;
-};
-
-const storePlayerCount = (playerObj) => {
-  const thisTeam = teams.find((tObj) => tObj.id === playerObj.teamId);
-  const thisTeamIndex = teams.findIndex((tObj) => tObj.id === thisTeam.id);
-
-  if (!thisTeam.playerCount) {
-    teams[thisTeamIndex].playerCount = 0;
-  }
-  teams[thisTeamIndex].playerCount += 1;
-};
-
 export const leaderboardHTML = () => {
-  scores = getScores();
-  teams = getTeams();
-  players = getPlayers();
+  const scores = getScores();
+  const teams = getTeams();
+  const players = getPlayers();
 
-  // go through scores and store each team's score within our copy of teams array
-  scores.forEach(storeScore);
+  // go through scores and store each team's total score within our copy of teams array
+  scores.forEach((scoreObj) => {
+    // QUESTION: do I really have to do another find to get the index? Maybe I should use a for loop...
+    const thisTeam = teams.find((tObj) => tObj.id === scoreObj.teamId);
+    const thisTeamIndex = teams.findIndex((tObj) => tObj.id === thisTeam.id);
+
+    if (!("score" in thisTeam)) {
+      teams[thisTeamIndex].score = 0;
+    }
+    teams[thisTeamIndex].score += scoreObj.score;
+  });
 
   // same but for player count
-  players.forEach(storePlayerCount);
+  players.forEach((playerObj) => {
+    const thisTeam = teams.find((tObj) => tObj.id === playerObj.teamId);
+    const thisTeamIndex = teams.findIndex((tObj) => tObj.id === thisTeam.id);
+
+    if (!thisTeam.playerCount) {
+      teams[thisTeamIndex].playerCount = 0;
+    }
+    teams[thisTeamIndex].playerCount += 1;
+  });
 
   // now sort the teams using a callback that compares two elements (which are team objects)
   const sortedTeams = teams.sort((teamA, teamB) => {

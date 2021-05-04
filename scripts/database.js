@@ -130,4 +130,4 @@ const database = {
 
 export const getPlayers = () => [...database.players];
 export const getScores = () => [...database.scores];
-export const getTeams = () => [...database.teams];
+export const getTeams = () => database.teams.slice();
