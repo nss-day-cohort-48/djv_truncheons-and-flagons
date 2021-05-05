@@ -40,18 +40,23 @@ export const leaderboardHTML = () => {
     }
   });
 
-  let htmlString = `<ul>`;
+  // open a table and create the header row
+  let htmlString = `<table>
+    <tr><th>Rank</th><th>Team</th><th>Score</th><th>Players</th></tr>`;
 
   htmlString += sortedTeams
-    // stObj is the (s)orted (t)eam (Obj)ect
+    // stObj is the (s)orted (t)eam (Obj)ect -- we are creating a table row for each
     .map((stObj, stIndex) => {
       // index+1 is the place number when you look at the sorted teams array
-      return `<li>#${stIndex + 1}: ${stObj.name} have ${stObj.score} points. (${
-        stObj.playerCount
-      } players)</li>`;
+      return `<tr>
+        <td>#${stIndex + 1}</td> 
+        <td>${stObj.name}</td> 
+        <td>${stObj.score}</td> 
+        <td>${stObj.playerCount}</td>
+      </tr>`;
     })
     .join("");
 
-  htmlString += `</ul>`;
+  htmlString += `</table>`;
   return htmlString;
 };
