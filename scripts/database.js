@@ -132,21 +132,9 @@ const database = {
 
 export const getPlayers = () => [...database.players];
 export const getScores = () => [...database.scores];
+
+// QUESTION: exporting a copy of the database needs to be done like this.... because it does?
 export const getTeams = () => database.teams.map((t) => ({ ...t }));
-export const getCurrentGame = () => [...database.currentGame]
-
-
-export const setScore = (score) => {
-  database.scoreBuilder.score = score
-}
-
-export const addScore = () => {
-  const newScore = {...database.scoreBuilder}
-
-  newScore.id = [...database.scores].pop().id + 1
-
-  newScore.timestamp = Date.now()
-}
 
 export const addPlayer = (firstName, lastName, playerTeam) => {
 
