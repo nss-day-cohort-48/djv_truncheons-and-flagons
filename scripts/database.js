@@ -130,4 +130,5 @@ const database = {
 
 export const getPlayers = () => [...database.players];
 export const getScores = () => [...database.scores];
-export const getTeams = () => database.teams.slice();
+// QUESTION: exporting a copy of the database needs to be done like this.... because it does?
+export const getTeams = () => database.teams.map((t) => ({ ...t }));
