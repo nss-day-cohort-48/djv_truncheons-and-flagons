@@ -23,15 +23,15 @@ export const gameHTML = () => {
 
   <div class="teamScore">
     <h4>First Team</h4>
-    <div>First Team's current score</div>
+    <div id="teamScore1">Current Score is 0</div>
   </div>
   <div class="teamScore">
     <h4>Second Team</h4>
-    <div>Second Team's current score</div>
+    <div  id="teamScore2">Current Score is 0</div>
   </div>
   <div class="teamScore">
     <h4>Third Team</h4>
-    <div>Third Team's current score</div>
+    <div  id="teamScore3">Current Score is 0</div>
   </div>
   `;
 };
