@@ -6,7 +6,7 @@ export const gameHTML = () => {
     <h1 class="logo">Truncheons & Flagons</h1>
 
     <div class="scoreForm">
-      <h3 class="round">Round 1</h3>
+      <h3 class="round" id="roundNumber">Round 1</h3>
       <fieldset>
         <label for="firstTeam">First Team</label>
         <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="3" value="0"/>
@@ -51,6 +51,7 @@ document.addEventListener(
       let secondTeamScore = 0
       let thirdTeamScore = 0
       let totalRoundScore = 0
+      let roundNumber = 1
 
       firstTeamScore += parseInt(document.getElementById("firstTeamScore").value)
       secondTeamScore += parseInt(document.getElementById("secondTeamScore").value)
@@ -61,12 +62,12 @@ document.addEventListener(
       if (totalRoundScore > 3) {
         window.alert(`Total Round Score must be 3 or less, you provided ${totalRoundScore}`)
       } else {
+        roundNumber++
+        document.getElementById("roundNumber").innerHTML = `Round ${roundNumber}`
         document.getElementById("teamScore1").innerHTML = `<div>Current Score is ${firstTeamScore}</div`
         document.getElementById("teamScore2").innerHTML = `<div>Current Score is ${secondTeamScore}</div`
         document.getElementById("teamScore3").innerHTML = `<div>Current Score is ${thirdTeamScore}</div`
       }
-      
-      totalRoundScore = 0;
     }
   }
 )
