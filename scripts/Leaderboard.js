@@ -33,7 +33,7 @@ export const leaderboardHTML = () => {
   // now sort the teams using a callback that compares two elements (which are team objects)
   const sortedTeams = teams.sort((teamA, teamB) => {
     // here we set up that the comparison takes place between each object's score
-    if (teamA.score > teamB.score) {
+    if (teamA.score < teamB.score) {
       return 1; // if the first object is bigger, we return 1 from the callback
     } else {
       return -1; // if the second object is bigger, we return -1
@@ -41,7 +41,6 @@ export const leaderboardHTML = () => {
   });
 
   let htmlString = `<ul>`;
-  // the sort array method takes a callback which compares two array items
 
   htmlString += sortedTeams
     // stObj is the (s)orted (t)eam (Obj)ect
