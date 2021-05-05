@@ -18,7 +18,7 @@ const database = {
     teamThree: null,
     playing: false
   },
-  scoreBuilder: {}
+  scoreBuilder: {},
   // TODO: move the rest of this data to a json-server API and add fetching functions
   players: [
     {
