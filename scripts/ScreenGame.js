@@ -40,16 +40,18 @@ export const gameHTML = () => {
 
 
 
-let firstTeamScore = 0
-let secondTeamScore = 0
-let thirdTeamScore = 0
-let totalRoundScore = 0
+
 
 
 document.addEventListener(
   "click",
   (event) => {
     if (event.target.id === "saveScoreButton") {
+      let firstTeamScore = 0
+      let secondTeamScore = 0
+      let thirdTeamScore = 0
+      let totalRoundScore = 0
+      
       firstTeamScore += parseInt(document.getElementById("firstTeamScore").value)
       secondTeamScore += parseInt(document.getElementById("secondTeamScore").value)
       thirdTeamScore += parseInt(document.getElementById("thirdTeamScore").value)
@@ -63,6 +65,8 @@ document.addEventListener(
         document.getElementById("teamScore2").innerHTML = `<div>Current Score is ${secondTeamScore}</div`
         document.getElementById("teamScore3").innerHTML = `<div>Current Score is ${thirdTeamScore}</div`
       }
+      
+      totalRoundScore = 0;
     }
   }
 )
