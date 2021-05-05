@@ -42,7 +42,6 @@ document.addEventListener("click", (event) => {
     let secondTeamScore = 0;
     let thirdTeamScore = 0;
     let totalRoundScore = 0;
-    let roundNumber = 1;
 
     firstTeamScore += parseInt(document.getElementById("firstTeamScore").value);
     secondTeamScore += parseInt(

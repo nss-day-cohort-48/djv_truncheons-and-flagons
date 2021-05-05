@@ -115,13 +115,13 @@
     {
       "id": 8,
       "teamId": 2,
-      "score": 1,
+      "score": 2,
       "timestamp": "1620238959051"
     },
     {
       "id": 9,
       "teamId": 3,
-      "score": 2,
+      "score": 1,
       "timestamp": "1620238959051"
     }
   ]
