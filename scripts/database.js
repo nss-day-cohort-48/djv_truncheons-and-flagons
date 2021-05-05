@@ -12,21 +12,52 @@ const database = {
     teamTwo: null,
     teamThree: null,
   },
-  scoreBuilder: {},
+  currentGame: {
+    roundNumber: 1,
+    firstTeamScore: 0,
+    secondTeamScore: 0,
+    thirdTeamScore: 0,
+    // TODO these should start as null, but we aren't setting up the game properly yet
+    firstTeamId: 1,
+    secondTeamId: 2,
+    thirdTeamId: 3,
+  },
+  scoresBuilder: {
+    firstTeamScore: 0,
+    secondTeamScore: 0,
+    thirdTeamScore: 0,
+  },
   players: [],
   scores: [],
   teams: [],
 };
 
-export const getCurrentGame = () => [...database.currentGame];
-export const setScore = (score) => {
-  database.scoreBuilder.score = score;
+export const buildScores = (
+  firstTeamPoints,
+  secondTeamPoints,
+  thirdTeamPoints
+) => {
+  database.scoresBuilder.firstTeamScore = firstTeamPoints;
+  database.scoresBuilder.secondTeamScore = secondTeamPoints;
+  database.scoresBuilder.thirdTeamScore = thirdTeamPoints;
 };
+
+export const setFirstTeamScore = (points) =>
+  (database.currentGame.firstTeamScore = points);
+export const setSecondTeamScore = (points) =>
+  (database.currentGame.secondTeamScore = points);
+export const setThirdTeamScore = (points) =>
+  (database.currentGame.thirdTeamScore = points);
+export const setRoundNumber = (roundNumber) =>
+  (database.currentGame.roundNumber = roundNumber);
 
 export const getPlayers = () => database.players.map((p) => ({ ...p }));
 export const getScores = () => database.scores.map((s) => ({ ...s }));
 export const getTeams = () => database.teams.map((t) => ({ ...t }));
+export const getCurrentGame = () => ({ ...database.currentGame });
+
 //============================================
+
 const apiURL = "http://localhost:8080";
 // TODO look at splitting up fetches for the three collections
 export const fetchAllCollections = () => {
@@ -39,18 +70,51 @@ export const fetchAllCollections = () => {
     });
 };
 
-// TODO rewrite these with POST fetches
-export const addScore = () => {
-  const newScore = { ...database.scoreBuilder };
-  newScore.timestamp = Date.now();
+export const addScores = () => {
+  const newScores = { ...database.scoreBuilder };
+  newScores.timestamp = Date.now();
+
+  const firstTeamNewScore = {
+    teamId: database.currentGame.firstTeamId,
+    score: newScores.firstTeamScore,
+    timestamp: newScores.timestamp,
+  };
+  const secondTeamNewScore = {
+    teamId: database.currentGame.secondTeamId,
+    score: newScores.secondTeamScore,
+    timestamp: newScores.timestamp,
+  };
+  const thirdTeamNewScore = {
+    teamId: database.currentGame.thirdTeamId,
+    score: newScores.thirdTeamScore,
+    timestamp: newScores.timestamp,
+  };
 
   fetch(apiURL + "/scores", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(newScore),
-  }).then(document.dispatchEvent(new CustomEvent("stateChanged")));
+    body: JSON.stringify(firstTeamNewScore),
+  })
+    .then(
+      fetch(apiURL + "/scores", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(secondTeamNewScore),
+      }).then(
+        fetch(apiURL + "/scores", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(thirdTeamNewScore),
+        })
+      )
+    )
+    .then(document.dispatchEvent(new CustomEvent("stateChanged")));
 };
 
 export const addPlayer = (firstName, lastName, playerTeam) => {
