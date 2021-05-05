@@ -1,7 +1,6 @@
 import { leaderboardHTML } from "./Leaderboard.js";
 
 export const introHTML = () => {
-  leaderboardHTML();
   return /*html*/ `
     <h1 class="logo">Truncheons & Flagons</h1>
     <button class="newGameButton">Set Up New Game</button>
