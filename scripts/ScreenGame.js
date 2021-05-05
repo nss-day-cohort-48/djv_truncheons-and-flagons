@@ -40,34 +40,56 @@ export const gameHTML = () => {
 
 
 
-
+let roundNumber = 1
+let firstTeamScore = 0
+let secondTeamScore = 0
+let thirdTeamScore = 0
 
 
 document.addEventListener(
   "click",
   (event) => {
     if (event.target.id === "saveScoreButton") {
-      let firstTeamScore = 0
-      let secondTeamScore = 0
-      let thirdTeamScore = 0
+
+      let firstTeamRoundScore = 0
+      let secondTeamRoundScore = 0
+      let thirdTeamRoundScore = 0
       let totalRoundScore = 0
-      let roundNumber = 1
+      
+      
 
-      firstTeamScore += parseInt(document.getElementById("firstTeamScore").value)
-      secondTeamScore += parseInt(document.getElementById("secondTeamScore").value)
-      thirdTeamScore += parseInt(document.getElementById("thirdTeamScore").value)
+      
+      
+      firstTeamRoundScore = parseInt(document.getElementById("firstTeamScore").value)
+      secondTeamRoundScore = parseInt(document.getElementById("secondTeamScore").value)
+      thirdTeamRoundScore = parseInt(document.getElementById("thirdTeamScore").value)
 
-      totalRoundScore = firstTeamScore + secondTeamScore + thirdTeamScore
 
-      if (totalRoundScore > 3) {
-        window.alert(`Total Round Score must be 3 or less, you provided ${totalRoundScore}`)
-      } else {
+      totalRoundScore = firstTeamRoundScore + secondTeamRoundScore + thirdTeamRoundScore
+
+      
+
+      if (totalRoundScore <= 3) {
+        totalRoundScore = 0
         roundNumber++
+
+        firstTeamScore += parseInt(document.getElementById("firstTeamScore").value)
+        secondTeamScore += parseInt(document.getElementById("secondTeamScore").value)
+        thirdTeamScore += parseInt(document.getElementById("thirdTeamScore").value)
+
         document.getElementById("roundNumber").innerHTML = `Round ${roundNumber}`
         document.getElementById("teamScore1").innerHTML = `<div>Current Score is ${firstTeamScore}</div`
         document.getElementById("teamScore2").innerHTML = `<div>Current Score is ${secondTeamScore}</div`
         document.getElementById("teamScore3").innerHTML = `<div>Current Score is ${thirdTeamScore}</div`
+
+        firstTeamRoundScore = 0
+        secondTeamRoundScore = 0
+        thirdTeamRoundScore = 0
+      } else {
+        window.alert(`Total Round Score must be 3 or less, you provided ${totalRoundScore}`)
+        
       }
+
     }
   }
 )
