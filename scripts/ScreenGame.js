@@ -7,15 +7,15 @@ export const gameHTML = () => {
       <h3 class="round" id="roundNumber">Round 1</h3>
       <fieldset>
         <label for="firstTeam">First Team</label>
-        <input class="scoreInput" name="firstTeam" type="text" />
+        <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="3" value="0"/>
       </fieldset>
       <fieldset>
         <label for="secondTeam">Second Team</label>
-        <input class="scoreInput" name="secondTeam" type="text" />
+        <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="3" value="0" />
       </fieldset>
       <fieldset>
         <label for="thirdTeam">Third Team</label>
-        <input class="scoreInput" name="thirdTeam" type="text" />
+        <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="3" value="0" />
       </fieldset>
       <button class="button" id="saveScoreButton">Save Round Scores</button>
     </div>
@@ -36,33 +36,38 @@ export const gameHTML = () => {
   `;
 };
 
+document.addEventListener("click", (event) => {
+  if (event.target.id === "saveScoreButton") {
+    let firstTeamScore = 0;
+    let secondTeamScore = 0;
+    let thirdTeamScore = 0;
+    let totalRoundScore = 0;
+    let roundNumber = 1;
 
-document.addEventListener(
-  "click",
-  (event) => {
-    if (event.target.id === "saveScoreButton") {
-      let firstTeamScore = 0
-      let secondTeamScore = 0
-      let thirdTeamScore = 0
-      let totalRoundScore = 0
-      let roundNumber = 1
+    firstTeamScore += parseInt(document.getElementById("firstTeamScore").value);
+    secondTeamScore += parseInt(
+      document.getElementById("secondTeamScore").value
+    );
+    thirdTeamScore += parseInt(document.getElementById("thirdTeamScore").value);
 
-      firstTeamScore += parseInt(document.getElementById("firstTeamScore").value)
-      secondTeamScore += parseInt(document.getElementById("secondTeamScore").value)
-      thirdTeamScore += parseInt(document.getElementById("thirdTeamScore").value)
+    totalRoundScore = firstTeamScore + secondTeamScore + thirdTeamScore;
 
-      totalRoundScore = firstTeamScore + secondTeamScore + thirdTeamScore
-
-      if (totalRoundScore > 3) {
-        window.alert(`Total Round Score must be 3 or less, you provided ${totalRoundScore}`)
-      } else {
-        roundNumber++
-        document.getElementById("roundNumber").innerHTML = `Round ${roundNumber}`
-        document.getElementById("teamScore1").innerHTML = `<div>Current Score is ${firstTeamScore}</div`
-        document.getElementById("teamScore2").innerHTML = `<div>Current Score is ${secondTeamScore}</div`
-        document.getElementById("teamScore3").innerHTML = `<div>Current Score is ${thirdTeamScore}</div`
-      }
+    if (totalRoundScore > 3) {
+      window.alert(
+        `Total Round Score must be 3 or less, you provided ${totalRoundScore}`
+      );
+    } else {
+      roundNumber++;
+      document.getElementById("roundNumber").innerHTML = `Round ${roundNumber}`;
+      document.getElementById(
+        "teamScore1"
+      ).innerHTML = `<div>Current Score is ${firstTeamScore}</div`;
+      document.getElementById(
+        "teamScore2"
+      ).innerHTML = `<div>Current Score is ${secondTeamScore}</div`;
+      document.getElementById(
+        "teamScore3"
+      ).innerHTML = `<div>Current Score is ${thirdTeamScore}</div`;
     }
   }
-)
-
+});
