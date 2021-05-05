@@ -55,21 +55,17 @@ document.addEventListener(
       let secondTeamRoundScore = 0
       let thirdTeamRoundScore = 0
       let totalRoundScore = 0
-      
-      
-
-      
-      
+       
       firstTeamRoundScore = parseInt(document.getElementById("firstTeamScore").value)
       secondTeamRoundScore = parseInt(document.getElementById("secondTeamScore").value)
       thirdTeamRoundScore = parseInt(document.getElementById("thirdTeamScore").value)
 
-
       totalRoundScore = firstTeamRoundScore + secondTeamRoundScore + thirdTeamRoundScore
 
-      
+      if (firstTeamRoundScore < 0 || secondTeamRoundScore < 0 || thirdTeamRoundScore < 0) {
+        window.alert(`Please enter a positive number!`)
+      } else if (totalRoundScore <= 3) {
 
-      if (totalRoundScore <= 3) {
         totalRoundScore = 0
         roundNumber++
 
@@ -85,11 +81,10 @@ document.addEventListener(
         firstTeamRoundScore = 0
         secondTeamRoundScore = 0
         thirdTeamRoundScore = 0
-      } else {
-        window.alert(`Total Round Score must be 3 or less, you provided ${totalRoundScore}`)
-        
-      }
 
+      } else {
+        window.alert(`Total Round Score must be 3 or less, you provided ${totalRoundScore}`)  
+      }      
     }
   }
 )
