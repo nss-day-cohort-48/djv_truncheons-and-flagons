@@ -1,5 +1,3 @@
-// import { setScore } from "./database.js"
-
 export const gameHTML = () => {
   return /*html*/ `
   <div class="game">
@@ -9,38 +7,34 @@ export const gameHTML = () => {
       <h3 class="round" id="roundNumber">Round 1</h3>
       <fieldset>
         <label for="firstTeam">First Team</label>
-        <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="3" value="0"/>
+        <input class="scoreInput" name="firstTeam" type="text" />
       </fieldset>
       <fieldset>
         <label for="secondTeam">Second Team</label>
-        <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="3" value="0"/>
+        <input class="scoreInput" name="secondTeam" type="text" />
       </fieldset>
       <fieldset>
         <label for="thirdTeam">Third Team</label>
-        <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="3" value="0"/>
+        <input class="scoreInput" name="thirdTeam" type="text" />
       </fieldset>
       <button class="button" id="saveScoreButton">Save Round Scores</button>
     </div>
   </div>
 
-  <div class="teamScore" >
+  <div class="teamScore">
     <h4>First Team</h4>
-    <div id="teamScore1">Current Score is 0</div>
+    <div>First Team's current score</div>
   </div>
   <div class="teamScore">
     <h4>Second Team</h4>
-    <div  id="teamScore2">Current Score is 0</div>
+    <div>Second Team's current score</div>
   </div>
-  <div class="teamScore" >
+  <div class="teamScore">
     <h4>Third Team</h4>
-    <div id="teamScore3">Current Score is 0</div>
+    <div>Third Team's current score</div>
   </div>
   `;
 };
-
-
-
-
 
 
 document.addEventListener(
