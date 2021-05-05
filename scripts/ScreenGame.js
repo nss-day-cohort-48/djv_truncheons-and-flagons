@@ -57,7 +57,7 @@ document.addEventListener(
       totalRoundScore = firstTeamScore + secondTeamScore + thirdTeamScore
 
       if (totalRoundScore > 3) {
-        prompt(`Total Round Score must be 3 or less, you provided ${totalRoundScore}`)
+        window.alert(`Total Round Score must be 3 or less, you provided ${totalRoundScore}`)
       } else {
         document.getElementById("teamScore1").innerHTML = `<div>Current Score is ${firstTeamScore}</div`
         document.getElementById("teamScore2").innerHTML = `<div>Current Score is ${secondTeamScore}</div`
