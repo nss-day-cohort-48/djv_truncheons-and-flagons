@@ -15,14 +15,16 @@ const database = {
   scoreBuilder: {},
 };
 
-export const getPlayers = () => [...database.players];
-export const getScores = () => [...database.scores];
-export const getTeams = () => database.teams.map((t) => ({ ...t }));
 export const getCurrentGame = () => [...database.currentGame];
-
 export const setScore = (score) => {
   database.scoreBuilder.score = score;
 };
+//============================================
+// TODO rewrite these with fetch
+
+export const getPlayers = () => [...database.players];
+export const getScores = () => [...database.scores];
+export const getTeams = () => database.teams.map((t) => ({ ...t }));
 
 export const addScore = () => {
   const newScore = { ...database.scoreBuilder };
