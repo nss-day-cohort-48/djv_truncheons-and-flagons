@@ -9,15 +9,15 @@ export const gameHTML = () => {
       <h3 class="round">Round 1</h3>
       <fieldset>
         <label for="firstTeam">First Team</label>
-        <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" value="0"/>
+        <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="3" value="0"/>
       </fieldset>
       <fieldset>
         <label for="secondTeam">Second Team</label>
-        <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" value="0"/>
+        <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="3" value="0"/>
       </fieldset>
       <fieldset>
         <label for="thirdTeam">Third Team</label>
-        <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" value="0"/>
+        <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="3" value="0"/>
       </fieldset>
       <button class="button" id="saveScoreButton">Save Round Scores</button>
     </div>
@@ -51,7 +51,7 @@ document.addEventListener(
       let secondTeamScore = 0
       let thirdTeamScore = 0
       let totalRoundScore = 0
-      
+
       firstTeamScore += parseInt(document.getElementById("firstTeamScore").value)
       secondTeamScore += parseInt(document.getElementById("secondTeamScore").value)
       thirdTeamScore += parseInt(document.getElementById("thirdTeamScore").value)
