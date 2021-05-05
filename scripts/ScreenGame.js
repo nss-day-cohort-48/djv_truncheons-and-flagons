@@ -1,37 +1,69 @@
+// import { setScore } from "./database.js"
+
 export const gameHTML = () => {
   return /*html*/ `
   <div class="game">
     <h1 class="logo">Truncheons & Flagons</h1>
 
     <div class="scoreForm">
-      <h3 class="round">Round #</h3>
+      <h3 class="round">Round 1</h3>
       <fieldset>
         <label for="firstTeam">First Team</label>
-        <input class="scoreInput" name="firstTeam" type="text" />
+        <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" value="0"/>
       </fieldset>
       <fieldset>
         <label for="secondTeam">Second Team</label>
-        <input class="scoreInput" name="secondTeam" type="text" />
+        <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" value="0"/>
       </fieldset>
       <fieldset>
         <label for="thirdTeam">Third Team</label>
-        <input class="scoreInput" name="thirdTeam" type="text" />
+        <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" value="0"/>
       </fieldset>
       <button class="button" id="saveScoreButton">Save Round Scores</button>
     </div>
   </div>
 
-  <div class="teamScore">
+  <div class="teamScore" >
     <h4>First Team</h4>
-    <div>First Team's current score</div>
+    <div id="teamScore1">Current Score is 0</div>
   </div>
   <div class="teamScore">
     <h4>Second Team</h4>
-    <div>Second Team's current score</div>
+    <div  id="teamScore2">Current Score is 0</div>
   </div>
-  <div class="teamScore">
+  <div class="teamScore" >
     <h4>Third Team</h4>
-    <div>Third Team's current score</div>
+    <div id="teamScore3">Current Score is 0</div>
   </div>
   `;
 };
+
+
+
+let firstTeamScore = 0
+let secondTeamScore = 0
+let thirdTeamScore = 0
+let totalRoundScore = 0
+
+
+document.addEventListener(
+  "click",
+  (event) => {
+    if (event.target.id === "saveScoreButton") {
+      firstTeamScore += parseInt(document.getElementById("firstTeamScore").value)
+      secondTeamScore += parseInt(document.getElementById("secondTeamScore").value)
+      thirdTeamScore += parseInt(document.getElementById("thirdTeamScore").value)
+
+      totalRoundScore = firstTeamScore + secondTeamScore + thirdTeamScore
+
+      if (totalRoundScore > 3) {
+        prompt(`Total Round Score must be 3 or less, you provided ${totalRoundScore}`)
+      } else {
+        document.getElementById("teamScore1").innerHTML = `<div>Current Score is ${firstTeamScore}</div`
+        document.getElementById("teamScore2").innerHTML = `<div>Current Score is ${secondTeamScore}</div`
+        document.getElementById("teamScore3").innerHTML = `<div>Current Score is ${thirdTeamScore}</div`
+      }
+    }
+  }
+)
+

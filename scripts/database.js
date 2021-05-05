@@ -12,10 +12,11 @@ const database = {
   teamBuilder: {
     name: null,
   },
-  gameBuilder: {
+  currentGame: {
     teamOne: null,
     teamTwo: null,
     teamThree: null,
+    playing: false
   },
   // TODO: move the rest of this data to a json-server API and add fetching functions
   players: [
@@ -126,8 +127,23 @@ const database = {
       timestamp: hundredSecondsLater.getDate(),
     },
   ],
+  scoreBuilder: {}
 };
 
 export const getPlayers = () => [...database.players];
 export const getScores = () => [...database.scores];
 export const getTeams = () => [...database.teams];
+export const getCurrentGame = () => [...database.currentGame]
+
+export const setScore = (score) => {
+  database.scoreBuilder.score = score
+}
+
+export const addScore = () => {
+  const newScore = {...database.scoreBuilder}
+
+  newScore.id = [...database.scores].pop().id + 1
+
+  newScore.timestamp = Date.now()
+
+}
