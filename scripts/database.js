@@ -71,7 +71,7 @@ export const fetchAllCollections = () => {
 };
 
 export const addScores = () => {
-  const newScores = { ...database.scoreBuilder };
+  const newScores = { ...database.scoresBuilder };
   newScores.timestamp = Date.now();
 
   const firstTeamNewScore = {
