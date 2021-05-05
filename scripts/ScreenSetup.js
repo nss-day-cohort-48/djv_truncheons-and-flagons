@@ -6,10 +6,19 @@ document.addEventListener("click", (event) => {
         const lastName = document.getElementById("lastName").value;
         const playerTeam = document.getElementById("selectedTeam").value;
 
-        if (firstName && lastName && playerTeam) {
-            addPlayer(firstName, lastName, playerTeam);
+        const teams = getTeams()
+        const players = getPlayers()
+        const teamToAddPlayerTo = teams.find(team => playerTeam === team.name)
+        const playersInCurrentTeam = players.filter(player => teamToAddPlayerTo.id === player.teamId)
+
+        if (playersInCurrentTeam.length < 3) {
+            if (firstName && lastName && playerTeam) {
+                addPlayer(firstName, lastName, playerTeam);
+            } else {
+                window.alert("Please complete all fields");
+            }
         } else {
-            window.alert("Please complete all fields");
+            window.alert("Selected team already has 3 players")
         }
     }
 });
