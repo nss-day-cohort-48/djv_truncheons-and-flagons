@@ -13,3 +13,20 @@
   http://localhost:8080
 
   Type s + enter at any time to create a snapshot of the database
+[0mGET /players [32m200[0m 24.569 ms - 807[0m
+[0mGET /db [32m200[0m 1.258 ms - -[0m
+[0mGET /db [32m200[0m 0.543 ms - -[0m
+[0mGET /db [32m200[0m 0.423 ms - -[0m
+[0mGET /db [32m200[0m 0.334 ms - -[0m
+[0mPOST /teams [0m-[0m - ms - -[0m
+[0mGET /db [32m200[0m 0.278 ms - -[0m
+[0mGET /db [36m304[0m 0.350 ms - -[0m
+[0mGET /teams [32m200[0m 4.179 ms - 216[0m
+[0mGET /players [36m304[0m 4.736 ms - -[0m
+[0mPOST /players [32m201[0m 3.829 ms - 77[0m
+[0mGET /db [32m200[0m 0.408 ms - -[0m
+[0mGET /db [32m200[0m 0.725 ms - -[0m
+[0mGET /db [36m304[0m 0.863 ms - -[0m
+[0mGET /players [32m200[0m 4.449 ms - 898[0m
+[0mGET /players [36m304[0m 4.074 ms - -[0m
+[0mGET /db [32m200[0m 0.263 ms - -[0m
