@@ -13,3 +13,29 @@
   http://localhost:8080
 
   Type s + enter at any time to create a snapshot of the database
+[0mGET /__rules [33m404[0m 2.531 ms - 2[0m
+[0mGET /db [32m200[0m 7.746 ms - -[0m
+[0mGET /db [36m304[0m 0.495 ms - -[0m
+[0mGET /teams [32m200[0m 5.252 ms - 156[0m
+[0mGET /db [36m304[0m 0.327 ms - -[0m
+[0mPOST /scores [32m201[0m 13.594 ms - 73[0m
+[0mGET /db [32m200[0m 0.442 ms - -[0m
+[0mPOST /scores [32m201[0m 5.952 ms - 73[0m
+[0mPOST /scores [32m201[0m 4.923 ms - 73[0m
+[0mPOST /scores [32m201[0m 3.216 ms - 73[0m
+[0mPOST /scores [32m201[0m 4.502 ms - 73[0m
+[0mPOST /scores [32m201[0m 4.888 ms - 73[0m
+[0mGET /db [32m200[0m 0.546 ms - -[0m
+[0mPOST /scores [32m201[0m 3.662 ms - 73[0m
+[0mPOST /scores [32m201[0m 3.772 ms - 73[0m
+[0mPOST /scores [32m201[0m 4.428 ms - 73[0m
+[0mGET /db [32m200[0m 0.421 ms - -[0m
+[0mPOST /scores [32m201[0m 3.852 ms - 73[0m
+[0mPOST /scores [32m201[0m 3.583 ms - 73[0m
+[0mGET /db [32m200[0m 0.259 ms - -[0m
+[0mPOST /scores [32m201[0m 2.962 ms - 73[0m
+[0mPOST /scores [32m201[0m 4.135 ms - 73[0m
+[0mPOST /scores [32m201[0m 3.899 ms - 73[0m
+[0mPOST /scores [32m201[0m 4.110 ms - 73[0m
+[0mGET /db [32m200[0m 0.230 ms - -[0m
+[0mGET /db [32m200[0m 0.358 ms - -[0m
