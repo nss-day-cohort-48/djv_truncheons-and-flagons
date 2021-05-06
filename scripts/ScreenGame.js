@@ -51,6 +51,7 @@ export const gameHTML = () => {
 
 document.addEventListener("click", (event) => {
   if (event.target.id === "saveScoreButton") {
+
     // init local score variables
     let firstTeamRoundScore = 0;
     let secondTeamRoundScore = 0;
@@ -72,6 +73,7 @@ document.addEventListener("click", (event) => {
     totalRoundScore =
       firstTeamRoundScore + secondTeamRoundScore + thirdTeamRoundScore;
 
+    const currentGame = getCurrentGame()
     // check for negatives
     if (
       firstTeamRoundScore < 0 ||
@@ -85,6 +87,15 @@ document.addEventListener("click", (event) => {
         `Total Round Score must be 3 or less, you provided ${totalRoundScore}`
       );
       // handle success case
+    } else if (currentGame.roundNumber === 3) {
+      setRoundNumber(1)
+      setFirstTeamScore(0)
+      setSecondTeamScore(0)
+      setThirdTeamScore(0)
+
+      window.alert(`And the winner is....`)
+      document.dispatchEvent(new CustomEvent("stateChanged"))
+    
     } else {
       const currentGame = getCurrentGame();
       setRoundNumber(currentGame.roundNumber + 1);
