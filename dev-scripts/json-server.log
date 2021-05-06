@@ -13,6 +13,7 @@
   http://localhost:8080
 
   Type s + enter at any time to create a snapshot of the database
+<<<<<<< HEAD
 [0mGET /__rules [33m404[0m 2.531 ms - 2[0m
 [0mGET /db [32m200[0m 7.746 ms - -[0m
 [0mGET /db [36m304[0m 0.495 ms - -[0m
@@ -39,3 +40,22 @@
 [0mPOST /scores [32m201[0m 4.110 ms - 73[0m
 [0mGET /db [32m200[0m 0.230 ms - -[0m
 [0mGET /db [32m200[0m 0.358 ms - -[0m
+=======
+[0mGET /players [32m200[0m 24.569 ms - 807[0m
+[0mGET /db [32m200[0m 1.258 ms - -[0m
+[0mGET /db [32m200[0m 0.543 ms - -[0m
+[0mGET /db [32m200[0m 0.423 ms - -[0m
+[0mGET /db [32m200[0m 0.334 ms - -[0m
+[0mPOST /teams [0m-[0m - ms - -[0m
+[0mGET /db [32m200[0m 0.278 ms - -[0m
+[0mGET /db [36m304[0m 0.350 ms - -[0m
+[0mGET /teams [32m200[0m 4.179 ms - 216[0m
+[0mGET /players [36m304[0m 4.736 ms - -[0m
+[0mPOST /players [32m201[0m 3.829 ms - 77[0m
+[0mGET /db [32m200[0m 0.408 ms - -[0m
+[0mGET /db [32m200[0m 0.725 ms - -[0m
+[0mGET /db [36m304[0m 0.863 ms - -[0m
+[0mGET /players [32m200[0m 4.449 ms - 898[0m
+[0mGET /players [36m304[0m 4.074 ms - -[0m
+[0mGET /db [32m200[0m 0.263 ms - -[0m
+>>>>>>> 195d57bbc182640cd2c8b733414fc0b4c64870bb
