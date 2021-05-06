@@ -53,6 +53,12 @@
       "firstName": "Bond",
       "lastName": "Jamesbond",
       "teamId": 3
+    },
+    {
+      "firstName": "Devin",
+      "lastName": "Garcia",
+      "teamId": 4,
+      "id": 10
     }
   ],
   "teams": [
@@ -67,6 +73,11 @@
     {
       "id": 3,
       "name": "REDACTED"
+    },
+    {
+      "name": "Newsies",
+      "score": 0,
+      "id": 4
     }
   ],
   "scores": [
