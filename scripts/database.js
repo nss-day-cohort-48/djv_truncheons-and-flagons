@@ -115,26 +115,28 @@ export const addScores = () => {
       )
     )
     .then(document.dispatchEvent(new CustomEvent("stateChanged")));
+
 };
 
 export const addPlayer = (firstName, lastName, playerTeam) => {
-  const newPlayer = database.playerBuilder;
+    const newPlayer = database.playerBuilder;
 
-  newPlayer.id = [...database.players].pop().id + 1;
-  newPlayer.firstName = firstName;
-  newPlayer.lastName = lastName;
-  newPlayer.teamId = [...database.teams].find(
-    (team) => team.name === playerTeam
-  ).id;
+    newPlayer.id = [...database.players].pop().id + 1;
+    newPlayer.firstName = firstName;
+    newPlayer.lastName = lastName;
+    newPlayer.teamId = [...database.teams].find(
+        (team) => team.name === playerTeam
+    ).id;
 
-  database.players.push(newPlayer);
+    database.players.push(newPlayer);
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 };
 
 export const addTeam = (teamName) => {
-  const newTeam = database.teamBuilder;
+    const newTeam = database.teamBuilder;
 
-  newTeam.id = [...database.teams].pop().id + 1;
-  newTeam.name = teamName;
+    newTeam.id = [...database.teams].pop().id + 1;
+    newTeam.name = teamName;
 
-  database.teams.push(newTeam);
+    database.teams.push(newTeam);
 };
