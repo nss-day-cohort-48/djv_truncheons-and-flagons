@@ -153,8 +153,15 @@ export const addPlayer = (firstName, lastName, playerTeam) => {
         (team) => team.name === playerTeam
     ).id;
 
-    database.players.push(newPlayer);
-    document.dispatchEvent(new CustomEvent("stateChanged"))
+    fetch(apiURL + "/players", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newPlayer),
+    }).then(
+        document.dispatchEvent(new CustomEvent("stateChanged"))
+    )
 };
 
 export const addTeam = (teamName) => {
@@ -163,5 +170,13 @@ export const addTeam = (teamName) => {
     newTeam.id = [...database.teams].pop().id + 1;
     newTeam.name = teamName;
 
-    database.teams.push(newTeam);
+    fetch(apiURL + "/teams", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTeam),
+    }).then(
+        document.dispatchEvent(new CustomEvent("stateChanged"))
+    )
 };
