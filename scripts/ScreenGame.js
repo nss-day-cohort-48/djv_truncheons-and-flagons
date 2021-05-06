@@ -1,18 +1,19 @@
 // import { setScore } from "./database.js"
 
 import {
-  addScores,
-  buildScores,
-  setRoundNumber,
-  setFirstTeamScore,
-  setSecondTeamScore,
-  setThirdTeamScore,
-  getCurrentGame,
+	addScores,
+	buildScores,
+	setRoundNumber,
+	setFirstTeamScore,
+	setSecondTeamScore,
+	setThirdTeamScore,
+	getCurrentGame,
+	getTeams
 } from "./database.js";
 
 export const gameHTML = () => {
-  const currentGame = getCurrentGame();
-  return /*html*/ `
+	const currentGame = getCurrentGame();
+	return /*html*/ `
   <div class="game">
     <h1 class="logo">Truncheons & Flagons</h1>
 
@@ -50,76 +51,95 @@ export const gameHTML = () => {
 };
 
 document.addEventListener("click", (event) => {
-  if (event.target.id === "saveScoreButton") {
+	if (event.target.id === "saveScoreButton") {
+		// init local score variables
+		let firstTeamRoundScore = 0;
+		let secondTeamRoundScore = 0;
+		let thirdTeamRoundScore = 0;
+		let totalRoundScore = 0;
 
-    // init local score variables
-    let firstTeamRoundScore = 0;
-    let secondTeamRoundScore = 0;
-    let thirdTeamRoundScore = 0;
-    let totalRoundScore = 0;
+		// store from DOM to local score variables
+		firstTeamRoundScore = parseInt(
+			document.getElementById("firstTeamScore").value
+		);
+		secondTeamRoundScore = parseInt(
+			document.getElementById("secondTeamScore").value
+		);
+		thirdTeamRoundScore = parseInt(
+			document.getElementById("thirdTeamScore").value
+		);
 
-    // store from DOM to local score variables
-    firstTeamRoundScore = parseInt(
-      document.getElementById("firstTeamScore").value
-    );
-    secondTeamRoundScore = parseInt(
-      document.getElementById("secondTeamScore").value
-    );
-    thirdTeamRoundScore = parseInt(
-      document.getElementById("thirdTeamScore").value
-    );
+		// add em up
+		totalRoundScore =
+			firstTeamRoundScore + secondTeamRoundScore + thirdTeamRoundScore;
 
-    // add em up
-    totalRoundScore =
-      firstTeamRoundScore + secondTeamRoundScore + thirdTeamRoundScore;
+		const currentGame = getCurrentGame();
+		// check for negatives
+		if (
+			firstTeamRoundScore < 0 ||
+			secondTeamRoundScore < 0 ||
+			thirdTeamRoundScore < 0
+		) {
+			window.alert(`Please enter a positive number!`);
+			// handle total round score too large
+		} else if (totalRoundScore > 3) {
+			window.alert(
+				`Total Round Score must be 3 or less, you provided ${totalRoundScore}`
+			);
+			//check if roundNumber is 3 or greater
+		} else if (currentGame.roundNumber >= 3) {
+			const scores = [
+				currentGame.firstTeamScore,
+				currentGame.secondTeamScore,
+				currentGame.thirdTeamScore
+			];
+			const sortedScores = scores.sort();
+			const winningScore = sortedScores[sortedScores.length - 1];
+			let winnerId = null;
 
-    const currentGame = getCurrentGame()
-    // check for negatives
-    if (
-      firstTeamRoundScore < 0 ||
-      secondTeamRoundScore < 0 ||
-      thirdTeamRoundScore < 0
-    ) {
-      window.alert(`Please enter a positive number!`);
-      // handle total round score too large
-    } else if (totalRoundScore > 3) {
-      window.alert(
-        `Total Round Score must be 3 or less, you provided ${totalRoundScore}`
-      );
-      //check if roundNumber is 3 or greater
-    } else if (currentGame.roundNumber >= 3) {
+			if (currentGame.firstTeamScore === winningScore) {
+				winnerId = currentGame.firstTeamId;
+			}
+			if (currentGame.secondTeamScore === winningScore) {
+				winnerId = currentGame.secondTeamId;
+			}
+			if (currentGame.thirdTeamScore === winningScore) {
+				winnerId = currentGame.thirdTeamId;
+			}
 
-      const scores = [currentGame.firstTeamScore, currentGame.secondTeamScore, currentGame.thirdTeamScore]
-      const sortedScores = scores.sort()
+			const teams = getTeams();
+			let winner = null;
+			for (const team of teams) {
+				if (team.id === winnerId) {
+					winner = team.name;
+				}
+			}
 
-      
+			//reset numbers
+			setRoundNumber(1);
+			setFirstTeamScore(0);
+			setSecondTeamScore(0);
+			setThirdTeamScore(0);
 
+			//alert the winner
+			window.alert(`And the winner is...  ${winner}!!`);
 
-      //reset numbers
-      setRoundNumber(1)
-      setFirstTeamScore(0)
-      setSecondTeamScore(0)
-      setThirdTeamScore(0)
+			//render
+			document.dispatchEvent(new CustomEvent("stateChanged"));
+			// handle success case
+		} else {
+			const currentGame = getCurrentGame();
+			setRoundNumber(currentGame.roundNumber + 1);
+			setFirstTeamScore(currentGame.firstTeamScore + firstTeamRoundScore);
+			setSecondTeamScore(currentGame.secondTeamScore + secondTeamRoundScore);
+			setThirdTeamScore(currentGame.thirdTeamScore + thirdTeamRoundScore);
 
-      //alert the winner
-      window.alert(`And the winner is....`)
-
-      //render
-      document.dispatchEvent(new CustomEvent("stateChanged"))
-      // handle success case
-    } else {
-      const currentGame = getCurrentGame();
-      setRoundNumber(currentGame.roundNumber + 1);
-      setFirstTeamScore(currentGame.firstTeamScore + firstTeamRoundScore);
-      setSecondTeamScore(currentGame.secondTeamScore + secondTeamRoundScore);
-      setThirdTeamScore(currentGame.thirdTeamScore + thirdTeamRoundScore);
-
-      buildScores(
-        firstTeamRoundScore,
-        secondTeamRoundScore,
-        thirdTeamRoundScore
-      );
-      addScores();
-    }
-  }
+			buildScores(
+				firstTeamRoundScore,
+				secondTeamRoundScore,
+				thirdTeamRoundScore
+			);
+			addScores();
+		}
+	}
 });
