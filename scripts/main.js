@@ -1,5 +1,5 @@
-import { fetchAllCollections } from "./database.js";
-import { truncheonsHTML } from "./truncheons.js";
+import {fetchAllCollections} from "./database.js";
+import {truncheonsHTML} from "./truncheons.js";
 
 const container = document.querySelector(".container");
 const render = () => {
