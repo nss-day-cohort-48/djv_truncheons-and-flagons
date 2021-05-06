@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 JSRV_LOGFILE=./dev-scripts/json-server.log
 SRV_LOGFILE=./dev-scripts/serve.log
 WORKING_DIR=djv_truncheons-and-flagons
@@ -16,6 +18,6 @@ mkdir -p api
 serve -n -l 8081 > $SRV_LOGFILE 2>&1 & 
 echo "Started 'serve' on port 8081 -- see $SRV_LOGFILE for more details"
 json-server -p 8080 api/db.json > $JSRV_LOGFILE 2>&1 & 
-echo "Started 'json-server' on port 8088 -- see $JSRV_LOGFILE for more details"
+echo "Started 'json-server' on port 8080 -- see $JSRV_LOGFILE for more details"
 
 echo -e "\nPress ctrl+c to exit!" && wait

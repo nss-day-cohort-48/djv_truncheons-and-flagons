@@ -15,4 +15,8 @@ INITIALDB="./dev-scripts/db.json.init"
 
 [[ -f $INITIALDB ]] || (echo "Can't find $INITIALDB" && exit 255)
 
-confirm "cat $INITIALDB > $DBFILE"
+if [ -f $DBFILE ]; then
+	confirm "cat $INITIALDB > $DBFILE"
+else
+	cat $INITIALDB > $DBFILE
+fi
