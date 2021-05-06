@@ -1,146 +1,121 @@
-// base time value for mock API entries
-const rightNow = new Date();
-// base time + 100 seconds (100000ms)
-const hundredSecondsLater = new Date(rightNow.getTime() + 100000);
-
 const database = {
-    playerBuilder: {
-        firstName: null,
-        lastName: null,
-        teamId: null,
-    },
-    teamBuilder: {
-        name: null,
-    },
-    gameBuilder: {
-        teamOne: null,
-        teamTwo: null,
-        teamThree: null,
-    },
-    scoreBuilder: {},
-    // TODO: move the rest of this data to a json-server API and add fetching functions
-    players: [{
-            id: 1,
-            firstName: "Jane",
-            lastName: "Doe",
-            teamId: 1,
-        },
-        {
-            id: 2,
-            firstName: "Dohn",
-            lastName: "Joe",
-            teamId: 1,
-        },
-        {
-            id: 3,
-            firstName: "Marty",
-            lastName: "McFly",
-            teamId: 1,
-        },
-        {
-            id: 4,
-            firstName: "French",
-            lastName: "Montana",
-            teamId: 2,
-        },
-        {
-            id: 5,
-            firstName: "Rick",
-            lastName: "Sanchez",
-            teamId: 2,
-        },
-        {
-            id: 6,
-            firstName: "Charles",
-            lastName: "Darlose",
-            teamId: 2,
-        },
-        {
-            id: 7,
-            firstName: "Fake",
-            lastName: "Name",
-            teamId: 3,
-        },
-        {
-            id: 8,
-            firstName: "Cornell",
-            lastName: "West",
-            teamId: 3,
-        },
-        {
-            id: 9,
-            firstName: "Bond",
-            lastName: "Jamesbond",
-            teamId: 3,
-        },
-    ],
-    teams: [{
-            id: 1,
-            name: "The Red Barons",
-        },
-        {
-            id: 2,
-            name: "The Flo Rida Fan Club",
-        },
-        {
-            id: 3,
-            name: "REDACTED",
-        },
-    ],
-    scores: [{
-            id: 1,
-            teamId: 1,
-            score: 1,
-            timestamp: rightNow.getDate(),
-        },
-        {
-            id: 2,
-            teamId: 2,
-            score: 2,
-            timestamp: rightNow.getDate(),
-        },
-        {
-            id: 3,
-            teamId: 3,
-            score: 0,
-            timestamp: rightNow.getDate(),
-        },
-        {
-            id: 4,
-            teamId: 1,
-            score: 1,
-            timestamp: hundredSecondsLater.getDate(),
-        },
-        {
-            id: 5,
-            teamId: 2,
-            score: 2,
-            timestamp: hundredSecondsLater.getDate(),
-        },
-        {
-            id: 6,
-            teamId: 3,
-            score: 0,
-            timestamp: hundredSecondsLater.getDate(),
-        },
-    ],
+  playerBuilder: {
+    firstName: null,
+    lastName: null,
+    teamId: null,
+  },
+  teamBuilder: {
+    name: null,
+  },
+  gameBuilder: {
+    teamOne: null,
+    teamTwo: null,
+    teamThree: null,
+  },
+  currentGame: {
+    roundNumber: 1,
+    firstTeamScore: 0,
+    secondTeamScore: 0,
+    thirdTeamScore: 0,
+    // TODO these should start as null, but we aren't setting up the game properly yet
+    firstTeamId: 1,
+    secondTeamId: 2,
+    thirdTeamId: 3,
+  },
+  scoresBuilder: {
+    firstTeamScore: 0,
+    secondTeamScore: 0,
+    thirdTeamScore: 0,
+  },
+  players: [],
+  scores: [],
+  teams: [],
 };
 
-export const getPlayers = () => [...database.players];
-export const getScores = () => [...database.scores];
-export const getTeams = () => database.teams.map((t) => ({...t }));
-export const getCurrentGame = () => [...database.currentGame];
-
-export const setScore = (score) => {
-    database.scoreBuilder.score = score;
+export const buildScores = (
+  firstTeamPoints,
+  secondTeamPoints,
+  thirdTeamPoints
+) => {
+  database.scoresBuilder.firstTeamScore = firstTeamPoints;
+  database.scoresBuilder.secondTeamScore = secondTeamPoints;
+  database.scoresBuilder.thirdTeamScore = thirdTeamPoints;
 };
 
-export const addScore = () => {
-    const newScore = {...database.scoreBuilder };
+export const setFirstTeamScore = (points) =>
+  (database.currentGame.firstTeamScore = points);
+export const setSecondTeamScore = (points) =>
+  (database.currentGame.secondTeamScore = points);
+export const setThirdTeamScore = (points) =>
+  (database.currentGame.thirdTeamScore = points);
+export const setRoundNumber = (roundNumber) =>
+  (database.currentGame.roundNumber = roundNumber);
 
-    newScore.id = [...database.scores].pop().id + 1;
+export const getPlayers = () => database.players.map((p) => ({ ...p }));
+export const getScores = () => database.scores.map((s) => ({ ...s }));
+export const getTeams = () => database.teams.map((t) => ({ ...t }));
+export const getCurrentGame = () => ({ ...database.currentGame });
 
-    newScore.timestamp = Date.now();
+//============================================
+
+const apiURL = "http://localhost:8080";
+// TODO look at splitting up fetches for the three collections
+export const fetchAllCollections = () => {
+  return fetch(apiURL + "/db")
+    .then((res) => res.json())
+    .then((wholeDB) => {
+      database.players = wholeDB.players;
+      database.teams = wholeDB.teams;
+      database.scores = wholeDB.scores;
+    });
+};
+
+export const addScores = () => {
+  const newScores = { ...database.scoresBuilder };
+  newScores.timestamp = Date.now();
+
+  const firstTeamNewScore = {
+    teamId: database.currentGame.firstTeamId,
+    score: newScores.firstTeamScore,
+    timestamp: newScores.timestamp,
+  };
+  const secondTeamNewScore = {
+    teamId: database.currentGame.secondTeamId,
+    score: newScores.secondTeamScore,
+    timestamp: newScores.timestamp,
+  };
+  const thirdTeamNewScore = {
+    teamId: database.currentGame.thirdTeamId,
+    score: newScores.thirdTeamScore,
+    timestamp: newScores.timestamp,
+  };
+
+  fetch(apiURL + "/scores", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(firstTeamNewScore),
+  })
+    .then(
+      fetch(apiURL + "/scores", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(secondTeamNewScore),
+      }).then(
+        fetch(apiURL + "/scores", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(thirdTeamNewScore),
+        })
+      )
+    )
+    .then(document.dispatchEvent(new CustomEvent("stateChanged")));
+
 };
 
 export const addPlayer = (firstName, lastName, playerTeam) => {

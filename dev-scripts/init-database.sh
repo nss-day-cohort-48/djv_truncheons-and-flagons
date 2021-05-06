@@ -13,6 +13,7 @@ confirm() {
 DBFILE="./api/db.json"
 INITIALDB="./dev-scripts/db.json.init"
 
+
 [[ -f $INITIALDB ]] || (echo "Can't find $INITIALDB" && exit 255)
 
 if [ -f $DBFILE ]; then
@@ -20,3 +21,4 @@ if [ -f $DBFILE ]; then
 else
 	cat $INITIALDB > $DBFILE
 fi
+
