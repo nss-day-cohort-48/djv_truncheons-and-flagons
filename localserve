@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+./dev-scripts/serve-tnf.sh
