@@ -86,16 +86,27 @@ document.addEventListener("click", (event) => {
       window.alert(
         `Total Round Score must be 3 or less, you provided ${totalRoundScore}`
       );
-      // handle success case
-    } else if (currentGame.roundNumber === 3) {
+      //check if roundNumber is 3 or greater
+    } else if (currentGame.roundNumber >= 3) {
+
+      const scores = [currentGame.firstTeamScore, currentGame.secondTeamScore, currentGame.thirdTeamScore]
+      const sortedScores = scores.sort()
+
+      
+
+
+      //reset numbers
       setRoundNumber(1)
       setFirstTeamScore(0)
       setSecondTeamScore(0)
       setThirdTeamScore(0)
 
+      //alert the winner
       window.alert(`And the winner is....`)
+
+      //render
       document.dispatchEvent(new CustomEvent("stateChanged"))
-    
+      // handle success case
     } else {
       const currentGame = getCurrentGame();
       setRoundNumber(currentGame.roundNumber + 1);
