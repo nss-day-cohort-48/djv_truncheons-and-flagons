@@ -1,6 +1,6 @@
-import { getScores } from "./database.js";
-import { getPlayers } from "./database.js";
-import { getTeams } from "./database.js";
+import {getScores} from "./database.js";
+import {getPlayers} from "./database.js";
+import {getTeams} from "./database.js";
 
 export const leaderboardHTML = () => {
   const scores = getScores();

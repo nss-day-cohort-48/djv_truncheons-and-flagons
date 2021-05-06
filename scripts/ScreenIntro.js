@@ -1,4 +1,4 @@
-import { leaderboardHTML } from "./Leaderboard.js";
+import {leaderboardHTML} from "./Leaderboard.js";
 
 export const introHTML = () => {
   return /*html*/ `

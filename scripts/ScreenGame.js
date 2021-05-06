@@ -8,31 +8,34 @@ import {
   setSecondTeamScore,
   setThirdTeamScore,
   getCurrentGame,
-  getTeams
+  getTeams,
 } from "./database.js";
 
 export const gameHTML = () => {
   const currentGame = getCurrentGame();
-  const teams = getTeams()
+  const teams = getTeams();
 
-  let foundFirstTeamName = teams.find((team) => currentGame.firstTeamId === team.id).name
-  let foundSecondTeamName = teams.find((team) => currentGame.secondTeamId === team.id).name
-  let foundThirdTeamName = teams.find((team) => currentGame.thirdTeamId === team.id).name
+  let foundFirstTeamName = teams.find(
+    (team) => currentGame.firstTeamId === team.id
+  ).name;
+  let foundSecondTeamName = teams.find(
+    (team) => currentGame.secondTeamId === team.id
+  ).name;
+  let foundThirdTeamName = teams.find(
+    (team) => currentGame.thirdTeamId === team.id
+  ).name;
 
-//   for (const team of teams) {
-//     if (currentGame.firstTeamId === team.id) {
-//       foundFirstTeamName = team.name
-//     }
-//     if (currentGame.secondTeamId === team.id) {
-//       foundSecondTeamName = team.name
-//     }
-//     if (currentGame.thirdTeamId === team.id) {
-//       foundThirdTeamName = team.name
-//     }
-//  }
-
- 
-
+  //   for (const team of teams) {
+  //     if (currentGame.firstTeamId === team.id) {
+  //       foundFirstTeamName = team.name
+  //     }
+  //     if (currentGame.secondTeamId === team.id) {
+  //       foundSecondTeamName = team.name
+  //     }
+  //     if (currentGame.thirdTeamId === team.id) {
+  //       foundThirdTeamName = team.name
+  //     }
+  //  }
 
   return /*html*/ `
   <div class="game">
