@@ -154,6 +154,7 @@ export const addPlayer = (firstName, lastName, playerTeam) => {
     ).id;
 
     database.players.push(newPlayer);
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 };
 
 export const addTeam = (teamName) => {
