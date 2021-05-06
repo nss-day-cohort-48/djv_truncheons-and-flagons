@@ -2,38 +2,56 @@ import { getPlayers, getTeams, addPlayer, addTeam } from "./database.js";
 
 document.addEventListener("click", (event) => {
     if (event.target.id === "playerSubmitButton") {
+
+        // stores the user input in variables
         const firstName = document.getElementById("firstName").value;
         const lastName = document.getElementById("lastName").value;
         const playerTeam = document.getElementById("selectedTeam").value;
 
-        const teams = getTeams()
-        const players = getPlayers()
-        const teamToAddPlayerTo = teams.find(team => playerTeam === team.name)
-        const playersInCurrentTeam = players.filter(player => teamToAddPlayerTo.id === player.teamId)
+        // grabs team and player lists from the database
+        const teams = getTeams();
+        const players = getPlayers();
 
+        // finds the team object that matches the user input
+        const teamToAddPlayerTo = teams.find((team) => playerTeam === team.name);
+
+        // check if the user input for team is valid. if so, we run a few array
+        // methods and store the players that are in the currently selected team into an array
+        const playersInCurrentTeam = []
+        if (playerTeam !== "Player's Team") {
+            players.filter(player => teamToAddPlayerTo.id === player.teamId).map(player => playersInCurrentTeam.push(player))
+        } else {
+            window.alert('Please select a valid team')
+            return
+        }
+
+        // checks if the selected team is full. if not, we check that all user input is valid
+        // and pass it as an argument to the addPlayer function
         if (playersInCurrentTeam.length < 3) {
             if (firstName && lastName && playerTeam) {
                 addPlayer(firstName, lastName, playerTeam);
             } else {
                 window.alert("Please complete all fields");
+                return
             }
         } else {
-            window.alert("Selected team already has 3 players")
+            window.alert("Selected team already has 3 players");
+            return
         }
     }
 });
 
 document.addEventListener("click", (event) => {
     if (event.target.id === "teamSubmitButton") {
-        const teamName = document.getElementById("teamName").value
+        const teamName = document.getElementById("teamName").value;
 
         if (teamName) {
-            addTeam(teamName)
+            addTeam(teamName);
         } else {
             window.alert("Please complete all fields");
         }
     }
-})
+});
 
 export const setupHTML = () => {
     return /*html*/ ` 

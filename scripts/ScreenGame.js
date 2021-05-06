@@ -1,34 +1,55 @@
 // import { setScore } from "./database.js"
 
 import {
-	addScores,
-	buildScores,
-	setRoundNumber,
-	setFirstTeamScore,
-	setSecondTeamScore,
-	setThirdTeamScore,
-	getCurrentGame,
-	getTeams
+  addScores,
+  buildScores,
+  setRoundNumber,
+  setFirstTeamScore,
+  setSecondTeamScore,
+  setThirdTeamScore,
+  getCurrentGame,
+  getTeams
 } from "./database.js";
 
 export const gameHTML = () => {
-	const currentGame = getCurrentGame();
-	return /*html*/ `
+  const currentGame = getCurrentGame();
+  const teams = getTeams()
+
+  let foundFirstTeamName = teams.find((team) => currentGame.firstTeamId === team.id).name
+  let foundSecondTeamName = teams.find((team) => currentGame.secondTeamId === team.id).name
+  let foundThirdTeamName = teams.find((team) => currentGame.thirdTeamId === team.id).name
+
+//   for (const team of teams) {
+//     if (currentGame.firstTeamId === team.id) {
+//       foundFirstTeamName = team.name
+//     }
+//     if (currentGame.secondTeamId === team.id) {
+//       foundSecondTeamName = team.name
+//     }
+//     if (currentGame.thirdTeamId === team.id) {
+//       foundThirdTeamName = team.name
+//     }
+//  }
+
+ 
+
+
+  return /*html*/ `
   <div class="game">
     <h1 class="logo">Truncheons & Flagons</h1>
 
     <div class="scoreForm">
       <h3 class="round" id="roundNumber">Round ${currentGame.roundNumber} </h3>
       <fieldset>
-        <label for="firstTeam">First Team</label>
+        <label for="firstTeam">${foundFirstTeamName}</label>
         <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="3" value="0"/>
       </fieldset>
       <fieldset>
-        <label for="secondTeam">Second Team</label>
+        <label for="secondTeam">${foundSecondTeamName}</label>
         <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="3" value="0"/>
       </fieldset>
       <fieldset>
-        <label for="thirdTeam">Third Team</label>
+        <label for="thirdTeam">${foundThirdTeamName}</label>
         <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="3" value="0"/>
       </fieldset>
       <button class="button" id="saveScoreButton">Save Round Scores</button>
@@ -36,15 +57,15 @@ export const gameHTML = () => {
   </div>
 
   <div class="teamScore" >
-    <h4>First Team</h4>
+    <h4>${foundFirstTeamName}</h4>
     <div id="teamScore1">Current Score is ${currentGame.firstTeamScore}</div>
   </div>
   <div class="teamScore">
-    <h4>Second Team</h4>
+    <h4>${foundSecondTeamName}</h4>
     <div  id="teamScore2">Current Score is ${currentGame.secondTeamScore}</div>
   </div>
   <div class="teamScore" >
-    <h4>Third Team</h4>
+    <h4>${foundThirdTeamName}</h4>
     <div id="teamScore3">Current Score is ${currentGame.thirdTeamScore}</div>
   </div>
   `;
