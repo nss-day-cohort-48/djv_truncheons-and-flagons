@@ -20,7 +20,7 @@ const blankGameState = {
   playing: gameState.playing,
   round: gameState.round,
   pteams: gameState.pteams.map((t) => ({...t})),
-  roles: gameState.roles.map((t) => ({...t})),
+  roles: {...gameState.roles},
 };
 
 const resetGameState = () => {
