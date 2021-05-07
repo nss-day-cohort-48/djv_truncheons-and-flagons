@@ -11,19 +11,18 @@ import {
   getTeams,
 } from "./database.js";
 
+import { winner } from "./winner.js"
+
 export const gameHTML = () => {
   const currentGame = getCurrentGame();
   const teams = getTeams();
 
   let foundFirstTeamName = teams.find(
-    (team) => currentGame.firstTeamId === team.id
-  ).name;
+    (team) => currentGame.firstTeamId === team.id).name;
   let foundSecondTeamName = teams.find(
-    (team) => currentGame.secondTeamId === team.id
-  ).name;
+    (team) => currentGame.secondTeamId === team.id).name;
   let foundThirdTeamName = teams.find(
-    (team) => currentGame.thirdTeamId === team.id
-  ).name;
+    (team) => currentGame.thirdTeamId === team.id).name;
 
   //   for (const team of teams) {
   //     if (currentGame.firstTeamId === team.id) {
@@ -112,41 +111,14 @@ document.addEventListener("click", (event) => {
 			);
 			//check if roundNumber is 3 or greater
 		} else if (currentGame.roundNumber >= 3) {
-			const scores = [
-				currentGame.firstTeamScore,
-				currentGame.secondTeamScore,
-				currentGame.thirdTeamScore
-			];
-			const sortedScores = scores.sort();
-			const winningScore = sortedScores[sortedScores.length - 1];
-			let winnerId = null;
-
-			if (currentGame.firstTeamScore === winningScore) {
-				winnerId = currentGame.firstTeamId;
-			}
-			if (currentGame.secondTeamScore === winningScore) {
-				winnerId = currentGame.secondTeamId;
-			}
-			if (currentGame.thirdTeamScore === winningScore) {
-				winnerId = currentGame.thirdTeamId;
-			}
-
-			const teams = getTeams();
-			let winner = null;
-			for (const team of teams) {
-				if (team.id === winnerId) {
-					winner = team.name;
-				}
-			}
+      //alert the game winner
+			window.alert(`And the winner is...  ${winner()}!!`);
 
 			//reset numbers
 			setRoundNumber(1);
 			setFirstTeamScore(0);
 			setSecondTeamScore(0);
 			setThirdTeamScore(0);
-
-			//alert the winner
-			window.alert(`And the winner is...  ${winner}!!`);
 
 			//render
 			document.dispatchEvent(new CustomEvent("stateChanged"));
