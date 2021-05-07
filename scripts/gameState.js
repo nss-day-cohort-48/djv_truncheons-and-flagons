@@ -27,14 +27,14 @@ const resetGameState = () => {
   gameState.playing = blankGameState.playing;
   gameState.round = blankGameState.round;
   gameState.pteams = blankGameState.pteams.map((t) => ({...t}));
-  gameState.roles = blankGameState.roles.map((t) => ({...t}));
+  gameState.roles = {...blankGameState.roles};
 };
 
 export const getGameState = () => ({
   playing: gameState.playing,
   round: gameState.round,
   pteams: gameState.pteams.map((t) => ({...t})),
-  roles: gameState.roles.map((t) => ({...t})),
+  roles: {...gameState.roles},
 });
 
 export const startGame = (teamOneId, teamTwoId, teamThreeId) => {
