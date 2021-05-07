@@ -2,9 +2,12 @@
 
 set -e
 
-JSRV_LOGFILE=./dev-scripts/json-server.log
-SRV_LOGFILE=./dev-scripts/serve.log
-WORKING_DIR=djv_truncheons-and-flagons
+JSRV_LOGFILE="./dev-scripts/json-server.log"
+JSRV_PORT="8080"
+SRV_LOGFILE="./dev-scripts/serve.log"
+SRV_PORT="8081"
+WORKING_DIR="djv_truncheons-and-flagons"
+
 
 # check to make sure we're in the right directory
 [[ $(basename $(pwd)) != $WORKING_DIR ]] && echo please run me from $WORKING_DIR && exit 1
@@ -16,8 +19,8 @@ mkdir -p api
 ./dev-scripts/init-database.sh
 
 serve -n -l 8081 > $SRV_LOGFILE 2>&1 & 
-echo "Started 'serve' on port 8081 -- see $SRV_LOGFILE for more details"
+echo "Started 'serve' on port $SRV_PORT -- see $SRV_LOGFILE for more details"
 json-server -p 8080 --watch api/db.json > $JSRV_LOGFILE 2>&1 & 
-echo "Started 'json-server' on port 8080 -- see $JSRV_LOGFILE for more details"
+echo "Started 'json-server' on port $JSRV_PORT -- see $JSRV_LOGFILE for more details"
 
 echo -e "\nPress ctrl+c to exit!" && wait
