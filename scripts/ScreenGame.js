@@ -1,22 +1,11 @@
 // import { setScore } from "./database.js"
 
-import {
-	addScores,
-	buildScores,
-	setRoundNumber,
-	setFirstTeamScore,
-	setSecondTeamScore,
-	setThirdTeamScore,
-	getCurrentGame,
-	getTeams,
-	getTeam
-} from "./database.js";
+import { getTeams, getTeam } from "./database.js";
 
 import { winner } from "./winner.js";
 import { getGameState, nextRound } from "./gameState.js";
 
 export const gameHTML = () => {
-	const currentGame = getCurrentGame();
 	const currentGameState = getGameState();
 	const teams = getTeams();
 
@@ -112,7 +101,6 @@ document.addEventListener("click", (event) => {
 		totalRoundScore =
 			firstTeamRoundScore + secondTeamRoundScore + thirdTeamRoundScore;
 
-		const currentGame = getCurrentGame();
 		const currentGameState = getGameState();
 		// check for negatives
 		if (
@@ -127,31 +115,8 @@ document.addEventListener("click", (event) => {
 		} else if (totalRoundScore > 6) {
 			window.alert(`There's no way you could have scored more than 6 points.`);
 			//check if roundNumber is 3 or greater
-		} else if (currentGameState.round >= 3) {
-			//alert the game winner
-			window.alert(`${winner()} beat the losers!!`);
-			//reset numbers
-			setRoundNumber(1);
-			setFirstTeamScore(0);
-			setSecondTeamScore(0);
-			setThirdTeamScore(0);
-
-			//render
-			document.dispatchEvent(new CustomEvent("stateChanged"));
-			// handle success case
 		} else {
-			const currentGame = getCurrentGame();
-			setRoundNumber(currentGame.roundNumber + 1);
-			setFirstTeamScore(currentGame.firstTeamScore + firstTeamRoundScore);
-			setSecondTeamScore(currentGame.secondTeamScore + secondTeamRoundScore);
-			setThirdTeamScore(currentGame.thirdTeamScore + thirdTeamRoundScore);
-
-			buildScores(
-				firstTeamRoundScore,
-				secondTeamRoundScore,
-				thirdTeamRoundScore
-			);
-			addScores();
+			nextRound(firstTeamRoundScore, secondTeamRoundScore, thirdTeamRoundScore);
 		}
 	}
 });
