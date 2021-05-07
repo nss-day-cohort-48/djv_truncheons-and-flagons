@@ -1,52 +1,73 @@
-import {AssignPlayerTeamHtml} from "./AssignPlayerTeam.js";
-import {getPlayers, getTeams, addPlayer, addTeam} from "./database.js";
-import {SelectTeamsDropdownHtml} from "./TeamSelect.js";
-import {UserSetupInputValid} from "./UserSetupInputValid.js";
+import { AssignPlayerTeamHtml } from "./AssignPlayerTeam.js";
+import { getPlayers, getTeams, addPlayer, addTeam } from "./database.js";
+// import { startGame } from "./gameState.js";
+import { SelectTeamsDropdownHtml } from "./TeamSelect.js";
+import { UserSetupInputValid } from "./UserSetupInputValid.js";
 
 document.addEventListener("click", (event) => {
-  if (event.target.id === "playerSubmitButton") {
-    // stores the user input in variables
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const playerTeam = document.getElementById("selectedTeam").value;
+    if (event.target.id === "playerSubmitButton") {
+        // stores the user input in variables
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const playerTeam = document.getElementById("selectedTeam").value;
 
-    if (UserSetupInputValid(firstName, lastName, playerTeam)) {
-      const teams = getTeams();
-      const players = getPlayers();
+        if (UserSetupInputValid(firstName, lastName, playerTeam)) {
+            const teams = getTeams();
+            const players = getPlayers();
 
-      // finds the team object that matches the user input
-      const teamToAddPlayerTo = teams.find((team) => playerTeam === team.name);
+            // finds the team object that matches the user input
+            const teamToAddPlayerTo = teams.find((team) => playerTeam === team.name);
 
-      // filters and stores the players that are in the currently selected team into an array
-      const playersInCurrentTeam = players.filter(
-        (player) => teamToAddPlayerTo.id === player.teamId
-      );
+            // filters and stores the players that are in the currently selected team into an array
+            const playersInCurrentTeam = players.filter(
+                (player) => teamToAddPlayerTo.id === player.teamId
+            );
 
-      // checks if the selected team is full.
-      if (playersInCurrentTeam.length < 3) {
-        addPlayer(firstName, lastName, playerTeam);
-      } else {
-        window.alert("Selected team already has 3 players");
-        return;
-      }
+            // checks if the selected team is full.
+            if (playersInCurrentTeam.length < 3) {
+                addPlayer(firstName, lastName, playerTeam);
+            } else {
+                window.alert("Selected team already has 3 players");
+                return;
+            }
+        }
     }
-  }
 });
 
 document.addEventListener("click", (event) => {
-  if (event.target.id === "teamSubmitButton") {
-    const teamName = document.getElementById("teamName").value;
+    if (event.target.id === "teamSubmitButton") {
+        const teamName = document.getElementById("teamName").value;
 
-    if (teamName) {
-      addTeam(teamName);
-    } else {
-      window.alert("Please complete all fields");
+        if (teamName) {
+            addTeam(teamName);
+        } else {
+            window.alert("Please complete all fields");
+        }
     }
-  }
+});
+
+document.addEventListener("click", (event) => {
+    if (event.target.id === "startGameButton") {
+        const teamOneId = parseInt(document.getElementById("1").value);
+        const teamTwoId = parseInt(document.getElementById("2").value);
+        const teamThreeId = parseInt(document.getElementById("3").value);
+
+        const allTeamsId = new Set();
+        allTeamsId.add(teamOneId);
+        allTeamsId.add(teamTwoId);
+        allTeamsId.add(teamThreeId);
+
+        if (allTeamsId.size === 3 && teamOneId + teamTwoId + teamThreeId === 6) {
+            startGame(teamOneId, teamTwoId, teamThreeId);
+        } else {
+            window.alert("Please select 3 unique teams");
+            return;
+        }
+    }
 });
 
 export const setupHTML = () => {
-  return /*html*/ ` 
+    return /*html*/ ` 
     <h1 class="logo">Truncheons & Flagons</h1>
     <div class="selectTeamSection">
     <h2>Select Your Teams:</h2>
@@ -54,7 +75,7 @@ export const setupHTML = () => {
 
     ${SelectTeamsDropdownHtml()}
 
-        <button class="startGameButton">Start Game</button>
+        <button id="startGameButton" class="startGameButton">Start Game</button>
     </div>
     </div>
 
