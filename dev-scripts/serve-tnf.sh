@@ -18,9 +18,9 @@ echo "Clearing the serve log file: $SRV_LOGFILE"            && echo "" > $SRV_LO
 mkdir -p api
 ./dev-scripts/init-database.sh
 
-serve -n -l 8081 > $SRV_LOGFILE 2>&1 & 
+serve -n -l $SRV_PORT > $SRV_LOGFILE 2>&1 & 
 echo "Started 'serve' on port $SRV_PORT -- see $SRV_LOGFILE for more details"
-json-server -p 8080 --watch api/db.json > $JSRV_LOGFILE 2>&1 & 
+json-server -p $JSRV_PORT --watch api/db.json > $JSRV_LOGFILE 2>&1 & 
 echo "Started 'json-server' on port $JSRV_PORT -- see $JSRV_LOGFILE for more details"
 
 echo -e "\nPress ctrl+c to exit!" && wait
