@@ -1,5 +1,6 @@
 // import { setScore } from "./database.js"
 
+<<<<<<< HEAD
 import {
   addScores,
   buildScores,
@@ -10,10 +11,14 @@ import {
   getCurrentGame,
   getTeams,
 } from "./database.js";
+=======
+import { getTeams, getTeam } from "./database.js";
+>>>>>>> origin/thejmdw-feature-scoring
 
 import {winner} from "./winner.js";
 
 export const gameHTML = () => {
+<<<<<<< HEAD
   const currentGame = getCurrentGame();
   const teams = getTeams();
 
@@ -40,6 +45,38 @@ export const gameHTML = () => {
   //  }
 
   return /*html*/ `
+=======
+	const currentGameState = getGameState();
+	const teams = getTeams();
+
+	let foundFirstTeamName = getTeam(currentGameState.teams[1].id).name;
+	let foundSecondTeamName = getTeam(currentGameState.teams[2].id).name;
+	let foundThirdTeamName = getTeam(currentGameState.teams[3].id).name;
+
+	// let foundFirstTeamName = teams.find(
+	//   (team) => currentGameState.teams[1].id === team.id
+	// ).name;
+	// let foundSecondTeamName = teams.find(
+	//   (team) => currentGame.teams[2].id === team.id
+	// ).name;
+	// let foundThirdTeamName = teams.find(
+	//   (team) => currentGame.teams[3].id === team.id
+	// ).name;
+
+	//   for (const team of teams) {
+	//     if (currentGame.firstTeamId === team.id) {
+	//       foundFirstTeamName = team.name
+	//     }
+	//     if (currentGame.secondTeamId === team.id) {
+	//       foundSecondTeamName = team.name
+	//     }
+	//     if (currentGame.thirdTeamId === team.id) {
+	//       foundThirdTeamName = team.name
+	//     }
+	//  }
+
+	return /*html*/ `
+>>>>>>> origin/thejmdw-feature-scoring
   <div class="game">
     <h1 class="logo">Truncheons & Flagons</h1>
 
@@ -83,6 +120,7 @@ document.addEventListener("gameOver", (event) => {
 });
 
 document.addEventListener("click", (event) => {
+<<<<<<< HEAD
   if (event.target.id === "saveScoreButton") {
     // init local score variables
     let firstTeamRoundScore = 0;
@@ -147,4 +185,46 @@ document.addEventListener("click", (event) => {
       addScores();
     }
   }
+=======
+	if (event.target.id === "saveScoreButton") {
+		// init local score variables
+		let firstTeamRoundScore = 0;
+		let secondTeamRoundScore = 0;
+		let thirdTeamRoundScore = 0;
+		let totalRoundScore = 0;
+
+		// store from DOM to local score variables
+		firstTeamRoundScore = parseInt(
+			document.getElementById("firstTeamScore").value
+		);
+		secondTeamRoundScore = parseInt(
+			document.getElementById("secondTeamScore").value
+		);
+		thirdTeamRoundScore = parseInt(
+			document.getElementById("thirdTeamScore").value
+		);
+
+		// add em up
+		totalRoundScore =
+			firstTeamRoundScore + secondTeamRoundScore + thirdTeamRoundScore;
+
+		const currentGameState = getGameState();
+		// check for negatives
+		if (
+			firstTeamRoundScore < 0 ||
+			secondTeamRoundScore < 0 ||
+			thirdTeamRoundScore < 0
+		) {
+			window.alert(`How did you score negative points?`);
+			// handle total round score too large
+		} else if (totalRoundScore === 0) {
+			window.alert(`Someone had to have scored...`);
+		} else if (totalRoundScore > 6) {
+			window.alert(`There's no way you could have scored more than 6 points.`);
+			//check if roundNumber is 3 or greater
+		} else {
+			nextRound(firstTeamRoundScore, secondTeamRoundScore, thirdTeamRoundScore);
+		}
+	}
+>>>>>>> origin/thejmdw-feature-scoring
 });
