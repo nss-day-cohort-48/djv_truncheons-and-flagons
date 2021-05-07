@@ -17,12 +17,9 @@ export const gameHTML = () => {
   const currentGame = getCurrentGame();
   const teams = getTeams();
 
-  let foundFirstTeamName = teams.find(
-    (team) => currentGame.firstTeamId === team.id).name;
-  let foundSecondTeamName = teams.find(
-    (team) => currentGame.secondTeamId === team.id).name;
-  let foundThirdTeamName = teams.find(
-    (team) => currentGame.thirdTeamId === team.id).name;
+  let foundFirstTeamName = teams.find((team) => currentGame.firstTeamId === team.id).name;
+  let foundSecondTeamName = teams.find((team) => currentGame.secondTeamId === team.id).name;
+  let foundThirdTeamName = teams.find((team) => currentGame.thirdTeamId === team.id).name;
 
   //   for (const team of teams) {
   //     if (currentGame.firstTeamId === team.id) {
@@ -82,38 +79,26 @@ document.addEventListener("click", (event) => {
 		let totalRoundScore = 0;
 
 		// store from DOM to local score variables
-		firstTeamRoundScore = parseInt(
-			document.getElementById("firstTeamScore").value
-		);
-		secondTeamRoundScore = parseInt(
-			document.getElementById("secondTeamScore").value
-		);
-		thirdTeamRoundScore = parseInt(
-			document.getElementById("thirdTeamScore").value
-		);
+		firstTeamRoundScore = parseInt(document.getElementById("firstTeamScore").value);
+		secondTeamRoundScore = parseInt(document.getElementById("secondTeamScore").value);
+		thirdTeamRoundScore = parseInt(document.getElementById("thirdTeamScore").value);
 
 		// add em up
-		totalRoundScore =
-			firstTeamRoundScore + secondTeamRoundScore + thirdTeamRoundScore;
+		totalRoundScore = firstTeamRoundScore + secondTeamRoundScore + thirdTeamRoundScore;
 
 		const currentGame = getCurrentGame();
 		// check for negatives
-		if (
-			firstTeamRoundScore < 0 ||
-			secondTeamRoundScore < 0 ||
-			thirdTeamRoundScore < 0
-		) {
-			window.alert(`Please enter a positive number!`);
+		if (firstTeamRoundScore < 0 || secondTeamRoundScore < 0 || thirdTeamRoundScore < 0) {
+			window.alert(`How did you score negative points?`);
 			// handle total round score too large
-		} else if (totalRoundScore > 3) {
-			window.alert(
-				`Total Round Score must be 3 or less, you provided ${totalRoundScore}`
-			);
+		} else if (totalRoundScore === 0) { 
+      window.alert(`Someone had to have scored...`)
+    } else if (totalRoundScore > 6) {
+			window.alert(`There's no way you could have scored more than 6 points.`);
 			//check if roundNumber is 3 or greater
 		} else if (currentGame.roundNumber >= 3) {
       //alert the game winner
 			window.alert(`And the winner is...  ${winner()}!!`);
-
 			//reset numbers
 			setRoundNumber(1);
 			setFirstTeamScore(0);
@@ -130,11 +115,7 @@ document.addEventListener("click", (event) => {
 			setSecondTeamScore(currentGame.secondTeamScore + secondTeamRoundScore);
 			setThirdTeamScore(currentGame.thirdTeamScore + thirdTeamRoundScore);
 
-			buildScores(
-				firstTeamRoundScore,
-				secondTeamRoundScore,
-				thirdTeamRoundScore
-			);
+			buildScores(firstTeamRoundScore, secondTeamRoundScore, thirdTeamRoundScore);
 			addScores();
 		}
 	}
