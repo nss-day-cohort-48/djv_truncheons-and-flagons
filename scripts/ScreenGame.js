@@ -41,15 +41,15 @@ export const gameHTML = () => {
       <h3 class="round" id="roundNumber">Round ${currentGame.roundNumber} </h3>
       <fieldset>
         <label for="firstTeam">${foundFirstTeamName}</label>
-        <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="3" value="0"/>
+        <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="6" value="0"/>
       </fieldset>
       <fieldset>
         <label for="secondTeam">${foundSecondTeamName}</label>
-        <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="3" value="0"/>
+        <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="6" value="0"/>
       </fieldset>
       <fieldset>
         <label for="thirdTeam">${foundThirdTeamName}</label>
-        <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="3" value="0"/>
+        <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="6" value="0"/>
       </fieldset>
       <button class="button" id="saveScoreButton">Save Round Scores</button>
     </div>
