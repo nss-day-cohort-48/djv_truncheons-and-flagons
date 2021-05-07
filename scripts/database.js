@@ -1,4 +1,5 @@
 import {makeScoreObj, headersJSON} from "./helpers.js";
+import {getGameState} from "./gameState.js";
 
 const database = {
   playerBuilder: {
@@ -49,11 +50,11 @@ export const fetchAllCollections = () => {
 
 // ===============>> Post
 export const addScores = () => {
-  const {teams} = getGameState();
+  const {pteams} = getGameState();
   // prettier-ignore
-  fetch(apiURL + "/scores", makeScoreObj(teams[1]))
-    .then(fetch(apiURL + "/scores", makeScoreObj(teams[2]))
-      .then(fetch(apiURL + "/scores", makeScoreObj(teams[3]))))
+  fetch(apiURL + "/scores", makeScoreObj(pteams[1]))
+    .then(fetch(apiURL + "/scores", makeScoreObj(pteams[2]))
+      .then(fetch(apiURL + "/scores", makeScoreObj(pteams[3]))))
         .then(document.dispatchEvent(new CustomEvent("stateChanged")));
 };
 

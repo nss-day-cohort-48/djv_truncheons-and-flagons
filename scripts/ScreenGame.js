@@ -1,7 +1,7 @@
 // import { setScore } from "./database.js"
 
 import {getTeams, getTeam} from "./database.js";
-import {getGameState} from "./gameState.js";
+import {getGameState, nextRound} from "./gameState.js";
 
 import {winner} from "./winner.js";
 
@@ -12,6 +12,7 @@ export const gameHTML = () => {
   let foundSecondTeam = getTeam(currentGameState.pteams[2].id);
   let foundThirdTeam = getTeam(currentGameState.pteams[3].id);
 
+  // TODO restore the missing HTML
   return /*html*/ `
   <div class="game">
     <h1 class="logo">Truncheons & Flagons</h1>
@@ -19,33 +20,22 @@ export const gameHTML = () => {
     <div class="scoreForm">
       <h3 class="round" id="roundNumber">Round ${currentGameState.round} </h3>
       <fieldset>
-        <label for="firstTeam">${foundFirstTeam?name}</label>
+        <!-- add team label -->
         <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="6" value="0"/>
       </fieldset>
       <fieldset>
-        <label for="secondTeam">${foundSecondTeam?name}</label>
+        <!-- add team label -->
         <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="6" value="0"/>
       </fieldset>
       <fieldset>
-        <label for="thirdTeam">${foundThirdTeam?name}</label>
+        <!-- add team label -->
         <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="6" value="0"/>
       </fieldset>
       <button class="button" id="saveScoreButton">Save Round Scores</button>
     </div>
   </div>
 
-  <div class="teamScore">
-    <h4>${foundFirstTeam?name}</h4>
-    <div id="teamScore1">Current Score is ${currentGame.firstTeamScore}</div>
-  </div>
-  <div class="teamScore">
-    <h4>${foundSecondTeam?name}</h4>
-    <div  id="teamScore2">Current Score is ${currentGame.secondTeamScore}</div>
-  </div>
-  <div class="teamScore" >
-    <h4>${foundThirdTeam?name}</h4>
-    <div id="teamScore3">Current Score is ${currentGame.thirdTeamScore}</div>
-  </div>
+  <!-- current scores -->
 
   `;
 };

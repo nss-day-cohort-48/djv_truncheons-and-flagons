@@ -1,4 +1,5 @@
 import {randomArrayOf} from "./helpers.js";
+import {addScores} from "./database.js";
 
 const gameState = {
   playing: false,
@@ -55,17 +56,24 @@ export const startGame = (teamOneId, teamTwoId, teamThreeId) => {
 export const nextRound = (firstScore, secondScore, thirdScore) => {
   // if we're coming from a valid round number
   if (gameState.round > 0 && gameState.round <= 3) {
-    sendScores(firstScore, secondScore, thirdScore);
+    addScores(firstScore, secondScore, thirdScore);
+    gameState.pteams[1].score += firstScore;
+    gameState.pteams[2].score += secondScore;
+    gameState.pteams[3].score += thirdScore;
 
     if (gameState.round === 3) {
+      debugger;
+      const nonNullTeams = gameState.pteams.filter((t) => t.id && t.score);
       document.dispatchEvent(
         new CustomEvent("gameOver", {
           // gives copy of array of pteams in no particular order
-          detail: gameState.pteams.filter((t) => t.id && t.score),
+          detail: nonNullTeams,
         })
       );
       resetGameState();
       document.dispatchEvent(new CustomEvent("stateChanged"));
+    } else {
+      gameState.round++;
     }
   } else {
     console.log("Can't advance round -- game hasn't started yet!");
