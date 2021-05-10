@@ -1,3 +1,5 @@
+import {dispatchStateChanged} from "./helpers";
+
 const appState = {
   teams: [],
   players: [],
@@ -5,6 +7,32 @@ const appState = {
 };
 
 const apiURL = "http://localhost:8080";
+
+const makePostJSON = (json) => {
+  return {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(json),
+  };
+};
+
+export const postScores = (firstScoreObj, secondScoreObj, thirdScoreObj) => {
+  fetch(apiURL + "/scores", makePostJSON(firstScoreObj)).then(() =>
+    fetch(apiURL + "/scores", makePostJSON(secondScoreObj)).then(
+      fetch(apiURL + "/scores", makePostJSON(thirdScoreObj)).then(
+        dispatchStateChanged()
+      )
+    )
+  );
+};
+
+export const postPlayer = (playerObject) => {
+  fetch(apiURL + "/players", makePostJSON(playerObject)).then(
+    dispatchStateChanged()
+  );
+};
 
 export const teamsRaw = () => teams.map((t) => ({...t}));
 export const playersRaw = () => players.map((p) => ({...p}));

@@ -1,8 +1,13 @@
+import {teamsRaw, scoresRaw, playersRaw} from "./dataAccess.js";
+
 export const getTeams = () => {
   const teams = teamsRaw();
   const scores = scoresRaw();
   const players = playersRaw();
-  return countTeamScores(countTeamPlayers(teams, players), scores);
+  // return countTeamScores(countTeamPlayers(teams, players), scores);
+  const teamsWithScores = countTeamScores(teams, scores);
+  const teamsWithScoresAndPlayers = countTeamPlayers(teamsWithScores, players);
+  return teamsWithScoresAndPlayers.map((t) => ({...t}));
 };
 
 const countTeamScores = (teamsArray, scores) => {
