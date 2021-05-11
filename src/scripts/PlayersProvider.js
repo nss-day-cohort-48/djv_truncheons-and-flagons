@@ -1,13 +1,14 @@
-import { playersRaw, postPlayer } from "./dataAccess.js";
+import { playersRaw, postPlayer, teamsRaw } from "./dataAccess.js";
 
 export const getPlayers = () => playersRaw();
 
 export const addPlayer = (firstName, lastName, teamName) => {
     const teams = teamsRaw();
-    newPlayer.firstName = firstName;
-    newPlayer.lastName = lastName;
-    newPlayer.teamId = teams.find((team) => team.name === teamName).id;
-
+    const newPlayer = {
+        firstName: firstName,
+        lastName: lastName,
+        teamId: teams.find((team) => team.name === teamName).id,
+    };
     postPlayer(newPlayer);
 };
 

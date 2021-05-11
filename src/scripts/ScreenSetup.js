@@ -1,6 +1,6 @@
-import { getPlayers, getTeams, addTeam } from "./dataAccess.js";
 import { startGame } from "./gameState.js";
-import { addPlayer } from "./PlayersProvider.js";
+import { addPlayer, getPlayers } from "./PlayersProvider.js";
+import { addTeam, getTeams } from "./TeamsProvider.js";
 
 document.addEventListener("click", (event) => {
     if (event.target.id === "playerSubmitButton") {
@@ -53,9 +53,15 @@ document.addEventListener("click", (event) => {
         const teamThreeId = parseInt(document.getElementById("3").value);
 
         const allTeamsId = new Set();
-        allTeamsId.add(teamOneId);
-        allTeamsId.add(teamTwoId);
-        allTeamsId.add(teamThreeId);
+        if (!Number.isNaN(teamOneId)) {
+            allTeamsId.add(teamOneId);
+        }
+        if (!Number.isNaN(teamTwoId)) {
+            allTeamsId.add(teamTwoId);
+        }
+        if (!Number.isNaN(teamThreeId)) {
+            allTeamsId.add(teamThreeId);
+        }
 
         if (allTeamsId.size === 3) {
             startGame(teamOneId, teamTwoId, teamThreeId);

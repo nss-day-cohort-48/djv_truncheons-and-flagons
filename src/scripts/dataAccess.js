@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { dispatchStateChanged } from "./helpers.js";
-=======
-import {dispatchStateChanged} from "./helpers.js";
->>>>>>> feature-gameState
 
 const appState = {
     teams: [],
@@ -44,15 +40,9 @@ export const postTeam = (teamObject) => {
     );
 };
 
-<<<<<<< HEAD
-export const teamsRaw = () => teams.map((t) => ({...t }));
-export const playersRaw = () => players.map((p) => ({...p }));
-export const scoresRaw = () => scores.map((s) => ({...s }));
-=======
-export const teamsRaw = () => appState.teams.map((t) => ({...t}));
-export const playersRaw = () => appState.players.map((p) => ({...p}));
-export const scoresRaw = () => appState.scores.map((s) => ({...s}));
->>>>>>> feature-gameState
+export const teamsRaw = () => appState.teams.map((t) => ({...t }));
+export const playersRaw = () => appState.players.map((p) => ({...p }));
+export const scoresRaw = () => appState.scores.map((s) => ({...s }));
 
 export const fetchAll = () => {
     return fetch(apiURL + "/db")
