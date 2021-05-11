@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { randomArrayOf } from "./helpers.js";
+=======
+import {randomArrayOf} from "./helpers.js";
+>>>>>>> feature-gameState
 
 const gameState = {
     intro: true,

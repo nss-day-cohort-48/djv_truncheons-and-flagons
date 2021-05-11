@@ -1,8 +1,7 @@
-import {getScores} from "./database.js";
-import {getPlayers} from "./database.js";
-import {getTeams} from "./database.js";
+import {getTeams} from "./TeamsProvider.js";
 
 export const leaderboardHTML = () => {
+  let teams = getTeams();
   teams = teams.filter((team) => team.playerCount === 3);
   // teams are sorted in reverse order so index+1=leaderboardPosition
   teams.sort((teamA, teamB) => (teamA.score < teamB.score ? 1 : -1));
