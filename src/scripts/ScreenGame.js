@@ -1,6 +1,6 @@
 // import { setScore } from "./database.js"
 
-import { getTeam } from "./TeamsProvider.js";
+import { getTeam, getTeams } from "./TeamsProvider.js";
 import { getGameState, nextRound } from "./gameState.js";
 
 export const winner = (teamsArray) => {
