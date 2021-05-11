@@ -1,9 +1,9 @@
-import {fetchAllCollections} from "./database.js";
-import {truncheonsHTML} from "./truncheons.js";
+import {truncheonsHTML} from "./Truncheons.js";
+import {fetchAll} from "./dataAccess.js";
 
 const container = document.querySelector(".container");
 const render = () => {
-  fetchAllCollections().then(() => {
+  fetchAll().then(() => {
     container.innerHTML = truncheonsHTML();
   });
 };
