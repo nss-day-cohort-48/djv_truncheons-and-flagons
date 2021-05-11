@@ -1,5 +1,4 @@
 import {randomArrayOf} from "./helpers.js";
-import {addScores} from "./database.js";
 
 const gameState = {
   intro: true,
