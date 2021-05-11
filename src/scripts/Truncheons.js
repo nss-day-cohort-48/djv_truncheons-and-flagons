@@ -1,6 +1,6 @@
-// import {setupHTML} from "./ScreenSetup.js";
-// import {gameHTML} from "./ScreenGame.js";
+import {setupHTML} from "./ScreenSetup.js";
 import {introHTML} from "./ScreenIntro.js";
+// import {gameHTML} from "./ScreenGame.js";
 import {getGameState} from "./gameState.js";
 
 export const truncheonsHTML = () => {
@@ -8,15 +8,15 @@ export const truncheonsHTML = () => {
 
   if (gameState.intro) {
     return /*html*/ `
-      <article> ${introHTML()}</article>  
-    `;
+          <article> ${introHTML()}</article>
+        `;
   } else if (!gameState.intro && gameState.setup && !gameState.playing) {
     return /*html*/ `
-        <article> ${setupHTML()}</article>  
-      `;
-  } else if (!gameState.intro && !gameState.setup && gameState.playing) {
-    return /*html*/ `
-  <article> ${gameHTML()} </article>
-  `;
+            <article> ${setupHTML()}</article>
+          `;
+    //   } else if (!gameState.intro && !gameState.setup && gameState.playing) {
+    //     return /*html*/ `
+    //           <article> ${gameHTML()} </article>
+    //           `;
   }
 };
