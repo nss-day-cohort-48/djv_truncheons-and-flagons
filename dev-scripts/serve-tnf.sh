@@ -7,8 +7,8 @@ pid_of() {
 
 set -e
 
-SRV_PORT="8081"
-JSRV_PORT="8080"
+SRV_PORT="8080"
+JSRV_PORT="8081"
 WORKING_DIR="djv_truncheons-and-flagons"
 
 JSRV_LOGFILE="./dev-scripts/json-server.log"
