@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
+
+# check to see if already running
+[[ -n $(ps | grep -v grep | grep serve-tnf) ]] && echo localserve already running && exit 201
+
 ./dev-scripts/serve-tnf.sh

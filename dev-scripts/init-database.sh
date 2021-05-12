@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+## MUST BE RUN FROM PROJECT ROOT
+
 confirm() {
 	echo "About to do: $1"
 	read -p "Are you sure? y or [n] => " -n 1 -r
