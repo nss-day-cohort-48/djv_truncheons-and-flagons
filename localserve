@@ -1,23 +1,37 @@
 #!/usr/bin/env bash
 
-## HOW TO USE IN OTHER PROJECTS:
-#       edit the VARS below
-#       open each .sh file mentioned here and edit their VARS too
+## HOW TO CUSTOMIZE FOR YOUR PROJECTS:
+#   edit the VARS below
+#   open each .sh file mentioned here and edit VARS if needed (optional)
 
-# =======================================> VARS
+## USAGE ==>> ./localserve from your repository root
+
+# ===================================================================> VARS
 WORKING_DIR="djv_truncheons-and-flagons" 
+DEVSCRIPT_DIR="dev-scripts"
 
-# =======================================> EXEC
+INITDBFILE="./dev-scripts/db.json.init"
+
+JSRV_PORT="8081"
+JSRV_DBFILE="./api/db.json"
+SRV_PORT="8080"
+SRV_SRCDIR="./src"
+
+## ------- FROM HERE ON OUT, IT'S ALL BASH: YOU'VE BEEN WARNED -------
+# ===================================================================> EXEC
+# check to see if already running
+STARTSCRIPT=start-servers.sh
+[[ -n $(ps | grep -v grep | grep $STARTSCRIPT ) ]] && \
+    echo localserve already running && exit 201
+
 # check our working directory
 [[ $(basename $(pwd)) != $WORKING_DIR ]] && \
     echo please run me from $WORKING_DIR or override with '-f' && exit 200
 
 # init the database
-mkdir -p api 
-./dev-scripts/init-database.sh
+./$DEVSCRIPT_DIR/init-database.sh $INITDBFILE $JSRV_DBFILE
 
-# check to see if already running
-[[ -n $(ps | grep -v grep | grep serve) ]] && \
-    echo localserve already running && exit 201
+echo # spacer
 
-./dev-scripts/start-servers.sh
+# start the servers
+./$DEVSCRIPT_DIR/$STARTSCRIPT $JSRV_PORT $JSRV_DBFILE $SRV_PORT $SRV_SRCDIR
