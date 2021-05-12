@@ -126,9 +126,6 @@ const winner = (teamsArray) => {
 	const winningTeam = teamsArray[0];
 	const secondTeam = teamsArray[1];
 	const thirdTeam = teamsArray[2];
-	const winningTeamId = winningTeam.id;
-	let secondTeamId = null;
-	let thirdTeamId = null;
 	let winner = null;
 	let winner2 = null;
 	let winner3 = null;
@@ -140,11 +137,8 @@ const winner = (teamsArray) => {
 		winningTeam.score === secondTeam.score &&
 		winningTeam.score === thirdTeam.score
 	) {
-		secondTeamId = secondTeam.id;
-		thirdTeamId = thirdTeam.id;
 		draw = 2;
 	} else if (winningTeam.score === secondTeam.score) {
-		secondTeamId = secondTeam.id;
 		draw = 1;
 	}
 
