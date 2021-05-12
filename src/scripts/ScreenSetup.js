@@ -1,4 +1,5 @@
 import { startGame } from "./gameState.js";
+import { dispatchStateChanged } from "./helpers.js";
 import { addPlayer, getPlayers } from "./PlayersProvider.js";
 import { addTeam, getTeams } from "./TeamsProvider.js";
 
@@ -52,6 +53,16 @@ document.addEventListener("click", (event) => {
         const teamTwoId = parseInt(document.getElementById("2").value);
         const teamThreeId = parseInt(document.getElementById("3").value);
 
+        startGame(teamOneId, teamTwoId, teamThreeId);
+    }
+});
+
+document.addEventListener("change", (event) => {
+    if (event.target.name === "teams") {
+        const teamOneId = parseInt(document.getElementById("1").value);
+        const teamTwoId = parseInt(document.getElementById("2").value);
+        const teamThreeId = parseInt(document.getElementById("3").value);
+
         const allTeamsId = new Set();
         if (!Number.isNaN(teamOneId)) {
             allTeamsId.add(teamOneId);
@@ -64,11 +75,24 @@ document.addEventListener("click", (event) => {
         }
 
         if (allTeamsId.size === 3) {
-            startGame(teamOneId, teamTwoId, teamThreeId);
+            document.getElementById("startGameButton").disabled = false;
         } else {
-            window.alert("Please select 3 unique teams");
-            return;
+            document.getElementById("startGameButton").disabled = true;
         }
+    }
+});
+
+document.addEventListener("keyup", () => {
+    if (document.getElementById("teamName").value === "") {
+        document.getElementById("teamSubmitButton").disabled = true;
+    } else {
+        document.getElementById("teamSubmitButton").disabled = false;
+    }
+});
+
+document.addEventListener("change", (event) => {
+    if (event.target.name === "playerAddTeams") {
+        document.getElementById("playerSubmitButton").disabled = false;
     }
 });
 
@@ -81,7 +105,7 @@ export const setupHTML = () => {
 
     ${SelectTeamsDropdownHtml()}
 
-        <button id="startGameButton" class="startGameButton">Start Game</button>
+        <button disabled="true" id="startGameButton" type="button" class="startGameButton">Start Game</button>
     </div>
     </div>
 
@@ -93,7 +117,7 @@ export const setupHTML = () => {
         <input placeholder="Team Name:" type="text" id="teamName"/>
         </div>
         <div>
-        <input id="teamSubmitButton" type="button" value="Add Team" />
+        <input disabled="true" id="teamSubmitButton" type="button" value="Add Team" />
         </div>
     </form>
     </div>
@@ -115,14 +139,14 @@ export const setupHTML = () => {
         name="lastName"
         /><br /><br />
         <div>
-        <select id="selectedTeam" name="teams">
+        <select id="selectedTeam" name="playerAddTeams">
             <option>Player's Team</option>
 
             ${AssignPlayerTeamHtml()}
 
         </select>
         </div>
-        <input id="playerSubmitButton" type="button" value="Add Player" />
+        <input disabled="true" id="playerSubmitButton" type="button" value="Add Player" />
     </form>
     </div>
     `;
