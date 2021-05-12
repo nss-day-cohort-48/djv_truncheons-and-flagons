@@ -10,11 +10,13 @@ export const SelectTeamsDropdownHtml = () => {
     // each run of the while loop will add a dropdown to select every team available.
     while (teamCounter < 4) {
         // opening tag for select dropdown
-        teamsHtml += `<div><select class="teamDropdown" name="teams">`;
+        teamsHtml += `<div><select id="${teamCounter}" class="teamDropdown" name="teams">`;
         // adding number for currently selected team with teamCounter
         teamsHtml += `<option>Select team ${teamCounter}:</option>`;
         // mapping each option for every team to a string
-        teamsHtml += teams.map((team) => `<option>${team.name}</option>`).join("");
+        teamsHtml += teams
+            .map((team) => `<option value="${team.id}">${team.name}</option>`)
+            .join("");
         // closing tags
         teamsHtml += `</select></div>`;
 

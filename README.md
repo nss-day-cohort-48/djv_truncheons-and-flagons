@@ -8,6 +8,10 @@
 
 - Run `./localserve` from the root of the repo to take care of all the `serve` and `json-serve` commands.
 
+## Glossary
+
+- `pteam` is a **playing team** and is different from a team object returned by the API
+
 ## Data Components
 
 - player

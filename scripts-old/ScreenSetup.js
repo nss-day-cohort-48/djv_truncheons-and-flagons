@@ -1,7 +1,15 @@
+<<<<<<< HEAD:scripts/ScreenSetup.js
 import { AssignPlayerTeamHtml } from "./AssignPlayerTeam.js";
 import { getPlayers, getTeams, addPlayer, addTeam } from "./database.js";
 import { SelectTeamsDropdownHtml } from "./TeamSelect.js";
 import { UserSetupInputValid } from "./UserSetupInputValid.js";
+=======
+import {AssignPlayerTeamHtml} from "./AssignPlayerTeam.js";
+import {getPlayers, getTeams, addPlayer, addTeam} from "./database.js";
+import {startGame} from "./gameState.js";
+import {SelectTeamsDropdownHtml} from "./TeamSelect.js";
+import {UserSetupInputValid} from "./UserSetupInputValid.js";
+>>>>>>> feature-gameState:scripts-old/ScreenSetup.js
 
 document.addEventListener("click", (event) => {
     if (event.target.id === "playerSubmitButton") {
@@ -22,6 +30,7 @@ document.addEventListener("click", (event) => {
                 (player) => teamToAddPlayerTo.id === player.teamId
             );
 
+<<<<<<< HEAD:scripts/ScreenSetup.js
             // checks if the selected team is full.
             if (playersInCurrentTeam.length < 3) {
                 addPlayer(firstName, lastName, playerTeam);
@@ -30,6 +39,16 @@ document.addEventListener("click", (event) => {
                 return;
             }
         }
+=======
+      // checks if the selected team is full.
+      if (playersInCurrentTeam.length < 3) {
+        addPlayer(firstName, lastName, playerTeam);
+        // document.dispatchEvent(new CustomEvent("stateChanged"));
+      } else {
+        window.alert("Selected team already has 3 players");
+        return;
+      }
+>>>>>>> feature-gameState:scripts-old/ScreenSetup.js
     }
 });
 
@@ -37,12 +56,40 @@ document.addEventListener("click", (event) => {
     if (event.target.id === "teamSubmitButton") {
         const teamName = document.getElementById("teamName").value;
 
+<<<<<<< HEAD:scripts/ScreenSetup.js
         if (teamName) {
             addTeam(teamName);
         } else {
             window.alert("Please complete all fields");
         }
+=======
+    if (teamName) {
+      addTeam(teamName);
+      // document.dispatchEvent(new CustomEvent("stateChanged"));
+    } else {
+      window.alert("Please complete all fields");
+>>>>>>> feature-gameState:scripts-old/ScreenSetup.js
     }
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target.id === "startGameButton") {
+    const teamOneId = parseInt(document.getElementById("1").value);
+    const teamTwoId = parseInt(document.getElementById("2").value);
+    const teamThreeId = parseInt(document.getElementById("3").value);
+
+    const allTeamsId = new Set();
+    allTeamsId.add(teamOneId);
+    allTeamsId.add(teamTwoId);
+    allTeamsId.add(teamThreeId);
+
+    if (allTeamsId.size === 3) {
+      startGame(teamOneId, teamTwoId, teamThreeId);
+    } else {
+      window.alert("Please select 3 unique teams");
+      return;
+    }
+  }
 });
 
 export const setupHTML = () => {
@@ -54,19 +101,19 @@ export const setupHTML = () => {
 
     ${SelectTeamsDropdownHtml()}
 
-        <button class="startGameButton">Start Game</button>
+        <button id="startGameButton" class="startGameButton">Start Game</button>
     </div>
     </div>
 
     <h2>Add New Team:</h2>
     
     <div>
-    <form class="newTeamForm">
+    <form class="newTeamForm" onsubmit="return false">
         <div>
         <input placeholder="Team Name:" type="text" id="teamName"/>
         </div>
         <div>
-        <input id="teamSubmitButton" type="submit" value="Add Team" />
+        <input id="teamSubmitButton" type="button" value="Add Team" />
         </div>
     </form>
     </div>
@@ -95,7 +142,7 @@ export const setupHTML = () => {
 
         </select>
         </div>
-        <input id="playerSubmitButton" type="submit" value="Add Player" />
+        <input id="playerSubmitButton" type="button" value="Add Player" />
     </form>
     </div>
     `;
