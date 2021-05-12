@@ -79,9 +79,21 @@ document.addEventListener("click", (event) => {
 const winner = (teamsArray) => {
 	teamsArray.sort((teamA, teamB) => (teamA.score < teamB.score ? 1 : -1));
 	const winningTeam = teamsArray[0];
+	const secondTeam = teamsArray[1];
+	const thirdTeam = teamsArray[2];
+	const winningScore = winningTeam.score;
 	const winningTeamId = winningTeam.id;
-
+	const tiedTeams = [];
 	const teams = getTeams();
+
+	for (const team of teams) {
+		if (team.score === winningScore) {
+			tiedTeams.push(team);
+		}
+	}
+
+	debugger;
+
 	let winner = null;
 	for (const team of teams) {
 		if (team.id === winningTeamId) {
