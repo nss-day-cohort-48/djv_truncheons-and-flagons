@@ -29,13 +29,13 @@ export const postScores = (firstScoreObj, secondScoreObj, thirdScoreObj) => {
 };
 
 export const postPlayer = (playerObject) => {
-    fetch(apiURL + "/players", makePostJSON(playerObject)).then(
+    fetch(apiURL + "/players", makePostJSON(playerObject)).then(() =>
         dispatchStateChanged()
     );
 };
 
 export const postTeam = (teamObject) => {
-    fetch(apiURL + "/teams", makePostJSON(teamObject)).then(
+    fetch(apiURL + "/teams", makePostJSON(teamObject)).then(() =>
         dispatchStateChanged()
     );
 };
