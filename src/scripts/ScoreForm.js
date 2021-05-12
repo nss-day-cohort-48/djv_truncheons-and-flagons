@@ -1,6 +1,7 @@
 import { nextRound } from "./gameState.js";
 import { getTeam, getTeams } from "./TeamsProvider.js";
 import { getGameState } from "./gameState.js";
+import { teamsRaw } from "./dataAccess.js";
 
 export const ScoreFormHTML = () => {
 	const currentGameState = getGameState();
@@ -125,30 +126,54 @@ const winner = (teamsArray) => {
 	const winningTeam = teamsArray[0];
 	const secondTeam = teamsArray[1];
 	const thirdTeam = teamsArray[2];
-	const winningScore = winningTeam.score;
 	const winningTeamId = winningTeam.id;
-	const tiedTeams = [];
-	const teams = getTeams();
-
-	for (const team of teams) {
-		if (team.score === winningScore) {
-			tiedTeams.push(team);
-		}
-	}
+	let secondTeamId = null;
+	let thirdTeamId = null;
+	let winner = null;
+	let winner2 = null;
+	let winner3 = null;
+	let draw = 0;
 
 	debugger;
 
-	let winner = null;
-	for (const team of teams) {
-		if (team.id === winningTeamId) {
-			winner = team.name;
-		}
+	if (
+		winningTeam.score === secondTeam.score &&
+		winningTeam.score === thirdTeam.score
+	) {
+		secondTeamId = secondTeam.id;
+		thirdTeamId = thirdTeam.id;
+		draw = 2;
+	} else if (winningTeam.score === secondTeam.score) {
+		secondTeamId = secondTeam.id;
+		draw = 1;
 	}
-	return winner;
+
+	if (draw === 2) {
+		const teams = getTeams();
+		winner = teams.find((t) => t.id === winningTeam.id).name;
+		winner2 = teams.find((t) => t.id === secondTeam.id).name;
+		winner3 = teams.find((t) => t.id === thirdTeam.id).name;
+
+		return window.alert(
+			`Hey ${winner}, ${winner2}, and ${winner3}... y'all tied. Time to duke it out.`
+		);
+	} else if (draw === 1) {
+		const teams = getTeams();
+		winner = teams.find((t) => t.id === winningTeam.id).name;
+		winner2 = teams.find((t) => t.id === secondTeam.id).name;
+		const loser = teams.find((t) => t.id === thirdTeam.id).name;
+
+		return window.alert(
+			`${winner} & ${winner2} tied!! They beat the ${loser}!`
+		);
+	} else if (draw === 0) {
+		const teams = getTeams();
+		winner = teams.find((t) => t.id === winningTeam.id).name;
+		return window.alert(`${winner} beat all y'all!!`);
+	}
 };
 
 document.addEventListener("gameOver", (event) => {
 	const justPlayedTeams = event.detail;
-
-	window.alert(`${winner(justPlayedTeams)} beat the losers!!`);
+	winner(justPlayedTeams);
 });
