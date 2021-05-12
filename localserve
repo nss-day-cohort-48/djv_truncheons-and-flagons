@@ -1,6 +1,23 @@
 #!/usr/bin/env bash
 
-# check to see if already running
-[[ -n $(ps | grep -v grep | grep serve-tnf) ]] && echo localserve already running && exit 201
+## HOW TO USE IN OTHER PROJECTS:
+#       edit the VARS below
+#       open each .sh file mentioned here and edit their VARS too
 
-./dev-scripts/serve-tnf.sh
+# =======================================> VARS
+WORKING_DIR="djv_truncheons-and-flagons" 
+
+# =======================================> EXEC
+# check our working directory
+[[ $(basename $(pwd)) != $WORKING_DIR ]] && \
+    echo please run me from $WORKING_DIR or override with '-f' && exit 200
+
+# init the database
+mkdir -p api 
+./dev-scripts/init-database.sh
+
+# check to see if already running
+[[ -n $(ps | grep -v grep | grep serve) ]] && \
+    echo localserve already running && exit 201
+
+./dev-scripts/start-servers.sh

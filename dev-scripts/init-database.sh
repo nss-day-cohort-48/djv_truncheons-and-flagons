@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-## MUST BE RUN FROM PROJECT ROOT
+# =====================================> VARS
+DBFILE="./api/db.json"
+INITIALDB="./dev-scripts/db.json.init"
 
+
+# =====================================> FUNC
 confirm() {
 	echo "About to do: $1"
 	read -p "Are you sure? y or [n] => " -n 1 -r
@@ -12,9 +16,8 @@ confirm() {
 	fi
 }
 
-DBFILE="./api/db.json"
-INITIALDB="./dev-scripts/db.json.init"
-
+# =====================================> EXEC
+mkdir -p api 
 
 [[ -f $INITIALDB ]] || (echo "Can't find $INITIALDB" && exit 255)
 
