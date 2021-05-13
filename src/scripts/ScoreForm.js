@@ -1,7 +1,6 @@
 import { nextRound } from "./gameState.js";
 import { getTeam, getTeams } from "./TeamsProvider.js";
 import { getGameState } from "./gameState.js";
-import { teamsRaw } from "./dataAccess.js";
 
 export const ScoreFormHTML = () => {
 	const currentGameState = getGameState();
@@ -126,9 +125,10 @@ const winner = (teamsArray) => {
 	const winningTeam = teamsArray[0];
 	const secondTeam = teamsArray[1];
 	const thirdTeam = teamsArray[2];
-	let winner = null;
-	let winner2 = null;
-	let winner3 = null;
+	const teams = getTeams();
+	const winner = teams.find((t) => t.id === winningTeam.id).name;
+	const team2 = teams.find((t) => t.id === secondTeam.id).name;
+	const team3 = teams.find((t) => t.id === thirdTeam.id).name;
 	let draw = 0;
 
 	debugger;
@@ -143,26 +143,12 @@ const winner = (teamsArray) => {
 	}
 
 	if (draw === 2) {
-		const teams = getTeams();
-		winner = teams.find((t) => t.id === winningTeam.id).name;
-		winner2 = teams.find((t) => t.id === secondTeam.id).name;
-		winner3 = teams.find((t) => t.id === thirdTeam.id).name;
-
 		return window.alert(
-			`Hey ${winner}, ${winner2}, and ${winner3}... y'all tied. Time to duke it out.`
+			`Hey ${winner}, ${team2}, and ${team3}... y'all tied. Time to duke it out.`
 		);
 	} else if (draw === 1) {
-		const teams = getTeams();
-		winner = teams.find((t) => t.id === winningTeam.id).name;
-		winner2 = teams.find((t) => t.id === secondTeam.id).name;
-		const loser = teams.find((t) => t.id === thirdTeam.id).name;
-
-		return window.alert(
-			`${winner} & ${winner2} tied!! They beat the ${loser}!`
-		);
+		return window.alert(`${winner} & ${team2} tied!! They beat the ${team3}!`);
 	} else if (draw === 0) {
-		const teams = getTeams();
-		winner = teams.find((t) => t.id === winningTeam.id).name;
 		return window.alert(`${winner} beat all y'all!!`);
 	}
 };
