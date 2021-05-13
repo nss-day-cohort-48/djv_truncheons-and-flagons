@@ -1,4 +1,4 @@
-import {getTeams} from "./TeamsProvider.js";
+import {getTeams, getSortedTeams} from "./TeamsProvider.js";
 
 export const leaderboardHTML = () => {
   let teams = getSortedTeams();

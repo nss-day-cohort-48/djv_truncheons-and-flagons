@@ -8,9 +8,9 @@ export const getTeams = () => {
   const players = playersRaw();
   // return countTeamScores(countTeamPlayers(teams, players), scores);
   teams = countTeamScores(teams, scores);
-  teams = countTeamPlayers(teamsWithScores, players);
+  teams = countTeamPlayers(teams, players);
   teams = addPlaceNumberTo(teams);
-  return teamsWithScoresAndPlayers.map((t) => ({...t}));
+  return teams.map((t) => ({...t}));
 };
 
 // convenience for when you wanna know who's WINNING
