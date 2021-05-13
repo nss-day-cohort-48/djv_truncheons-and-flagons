@@ -9,7 +9,7 @@
 Snapshots of all these diagrams can be found in the `docs/` directory.
 
 - [Entity Relationship Disagram](https://dbdiagram.io/d/60904023b29a09603d133027)
-- [Component and Provider flowchart](https://www.figma.com/file/2AhYWZL70RCIqO66YlrsFb/Truncheons-and-Flagons-Data-Flow?node-id=0%3A1)
+- [Event and Data Flowcharts](https://www.figma.com/file/2AhYWZL70RCIqO66YlrsFb/Truncheons-and-Flagons-Data-Flow?node-id=0%3A1)
 - [Wireframe](https://sketchboard.me/DCGxzANOaAB#/)
 
 ## Developing
