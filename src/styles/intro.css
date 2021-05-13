@@ -1,0 +1,34 @@
+#newGameButtonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.leaderboardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leaderboardHeader {
+  text-align: center;
+}
+
+table.leaderboard {
+  width: 80%;
+}
+
+table.leaderboard,
+td.leaderboard {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+td.leaderboard {
+  text-align: center;
+}
+
+td.place {
+  font-weight: 900;
+}
