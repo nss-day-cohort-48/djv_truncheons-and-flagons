@@ -121,34 +121,30 @@ document.addEventListener("click", (event) => {
 });
 
 const winner = (teamsArray) => {
+	//sort teams to find winner from the array of playing teams
 	teamsArray.sort((teamA, teamB) => (teamA.score < teamB.score ? 1 : -1));
+	//assign those teams to a variable based on their position in the sorted array
 	const winningTeam = teamsArray[0];
 	const secondTeam = teamsArray[1];
 	const thirdTeam = teamsArray[2];
+	//get the array of all teams
 	const teams = getTeams();
+	//find the team names based on the IDs from the playing teams
 	const winner = teams.find((t) => t.id === winningTeam.id).name;
 	const team2 = teams.find((t) => t.id === secondTeam.id).name;
 	const team3 = teams.find((t) => t.id === thirdTeam.id).name;
-	let draw = 0;
 
-	debugger;
-
+	//if all 3 teams tie...
 	if (
 		winningTeam.score === secondTeam.score &&
 		winningTeam.score === thirdTeam.score
 	) {
-		draw = 2;
-	} else if (winningTeam.score === secondTeam.score) {
-		draw = 1;
-	}
-
-	if (draw === 2) {
 		return window.alert(
 			`Hey ${winner}, ${team2}, and ${team3}... y'all tied. Time to duke it out.`
 		);
-	} else if (draw === 1) {
+	} else if (winningTeam.score === secondTeam.score) {
 		return window.alert(`${winner} & ${team2} tied!! They beat the ${team3}!`);
-	} else if (draw === 0) {
+	} else {
 		return window.alert(`${winner} beat all y'all!!`);
 	}
 };
