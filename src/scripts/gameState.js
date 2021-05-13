@@ -110,7 +110,8 @@ export const nextRound = (firstScore, secondScore, thirdScore) => {
 			gameState.round++;
 			document.dispatchEvent(new CustomEvent("stateChanged"));
 		} else if (gameState.round === 3) {
-			const nonNullTeams = gameState.pteams.filter((t) => t.id && t.score);
+			debugger;
+			const nonNullTeams = gameState.pteams.filter((t) => t.id);
 			addScores(gameState.pteams[1], gameState.pteams[2], gameState.pteams[3]);
 			document.dispatchEvent(
 				new CustomEvent("gameOver", {

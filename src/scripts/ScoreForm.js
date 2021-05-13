@@ -121,22 +121,35 @@ document.addEventListener("click", (event) => {
 });
 
 const winner = (teamsArray) => {
+	//sort teams to find winner from the array of playing teams
 	teamsArray.sort((teamA, teamB) => (teamA.score < teamB.score ? 1 : -1));
+	//assign those teams to a variable based on their position in the sorted array
 	const winningTeam = teamsArray[0];
-	const winningTeamId = winningTeam.id;
-
+	const secondTeam = teamsArray[1];
+	const thirdTeam = teamsArray[2];
+	//get the array of all teams
 	const teams = getTeams();
-	let winner = null;
-	for (const team of teams) {
-		if (team.id === winningTeamId) {
-			winner = team.name;
-		}
+	//find the team names based on the IDs from the playing teams
+	const winner = teams.find((t) => t.id === winningTeam.id).name;
+	const team2 = teams.find((t) => t.id === secondTeam.id).name;
+	const team3 = teams.find((t) => t.id === thirdTeam.id).name;
+
+	//if all 3 teams tie...
+	if (
+		winningTeam.score === secondTeam.score &&
+		winningTeam.score === thirdTeam.score
+	) {
+		return window.alert(
+			`Hey ${winner}, ${team2}, and ${team3}... y'all tied. Time to duke it out.`
+		);
+	} else if (winningTeam.score === secondTeam.score) {
+		return window.alert(`${winner} & ${team2} tied!! They beat the ${team3}!`);
+	} else {
+		return window.alert(`${winner} beat all y'all!!`);
 	}
-	return winner;
 };
 
 document.addEventListener("gameOver", (event) => {
 	const justPlayedTeams = event.detail;
-
-	window.alert(`${winner(justPlayedTeams)} beat the losers!!`);
+	winner(justPlayedTeams);
 });
