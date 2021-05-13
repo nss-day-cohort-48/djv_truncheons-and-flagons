@@ -1,0 +1,28 @@
+/* Score Form */
+.score-form {
+	border: 2px solid black;
+}
+
+.round {
+	text-align: center;
+	border: 2px solid black;
+}
+
+.score-input {
+	text-align: center;
+}
+/* Score Board */
+.score-board {
+	border: 2px solid black;
+	display: flex;
+	justify-content: space-between;
+}
+
+.score-board-team {
+	border: 2px solid black;
+	flex-basis: 25%;
+}
+
+.score-board-team {
+	text-align: center;
+}

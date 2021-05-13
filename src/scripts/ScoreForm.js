@@ -15,6 +15,7 @@ export const ScoreFormHTML = () => {
 
 	if (foundFirstTeam.role === "Knights") {
 		return /*html*/ `
+
    <h3 class="round" id="roundNumber">Round ${currentGameState.round} </h3>
    <fieldset>
      <label for="firstTeam">${foundFirstTeam.name} are playing as the ${foundFirstTeam.role}</label>
@@ -31,10 +32,11 @@ export const ScoreFormHTML = () => {
      <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="3" value="0"/>
    </fieldset>
    <button class="button" id="saveScoreButton">Save Round Scores</button>
- </div>
+
    `;
 	} else if (foundSecondTeam.role === "Knights") {
 		return /*html*/ `
+
    <h3 class="round" id="roundNumber">Round ${currentGameState.round} </h3>
    <fieldset>
      <label for="firstTeam">${foundFirstTeam.name} are playing as the ${foundFirstTeam.role}</label>
@@ -51,10 +53,11 @@ export const ScoreFormHTML = () => {
      <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="3" value="0"/>
    </fieldset>
    <button class="button" id="saveScoreButton">Save Round Scores</button>
- </div>
+
    `;
 	} else if (foundThirdTeam.role === "Knights") {
 		return /*html*/ `
+
    <h3 class="round" id="roundNumber">Round ${currentGameState.round} </h3>
    <fieldset>
      <label for="firstTeam">${foundFirstTeam.name} are playing as the ${foundFirstTeam.role}</label>
@@ -71,7 +74,7 @@ export const ScoreFormHTML = () => {
      <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="6" value="0"/>
    </fieldset>
    <button class="button" id="saveScoreButton">Save Round Scores</button>
- </div>
+
    `;
 	}
 };
@@ -142,6 +145,7 @@ const winner = (teamsArray) => {
 		return window.alert(
 			`Hey ${winner}, ${team2}, and ${team3}... y'all tied. Time to duke it out.`
 		);
+		// if only 2 teams
 	} else if (winningTeam.score === secondTeam.score) {
 		return window.alert(`${winner} & ${team2} tied!! They beat the ${team3}!`);
 	} else {
