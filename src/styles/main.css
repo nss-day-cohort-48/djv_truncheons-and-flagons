@@ -1,5 +1,9 @@
+
 @import "../styles/scoreForm.css";
+@import url("setup.css");
+@import "./intro.css";
+
 
 .logo {
-	text-align: center;
+    text-align: center;
 }
