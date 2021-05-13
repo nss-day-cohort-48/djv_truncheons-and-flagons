@@ -1,9 +1,10 @@
-import { setupHTML } from "./ScreenSetup.js";
-import { introHTML } from "./ScreenIntro.js";
-import { gameHTML } from "./ScreenGame.js";
-import { getGameState } from "./gameState.js";
+import {setupHTML} from "./ScreenSetup.js";
+import {introHTML} from "./ScreenIntro.js";
+import {gameHTML} from "./ScreenGame.js";
+import {getGameState} from "./gameState.js";
 
 export const truncheonsHTML = () => {
+  
     const gameState = getGameState();
 
     if (gameState.intro) {
@@ -20,3 +21,4 @@ export const truncheonsHTML = () => {
           `;
     }
 };
+

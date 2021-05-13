@@ -15,17 +15,17 @@ export const leaderboardHTML = () => {
   teams = addPlaceNumberTo(teams);
 
   // open a table and create the header row
-  let htmlString = `<table>
-    <tr><th>Rank</th><th>Team</th><th>Score</th><th>Players</th></tr>`;
+  let htmlString = `<table class="leaderboard">
+    <tr class="leaderboard"><th>Rank</th><th>Team</th><th>Score</th><th>Players</th></tr>`;
 
   htmlString += teams
     // stObj is the (s)orted (t)eam (Obj)ect -- we are creating a table row for each
     .map((team, indexInArray) => {
-      return `<tr>
-        <td>#${team.place}</td> 
-        <td>${team.name}</td> 
-        <td>${team.score}</td> 
-        <td>${team.playerCount}</td>
+      return `<tr class="leaderboard">
+        <td class="place leaderboard">#${team.place}</td> 
+        <td class="name leaderboard">${team.name}</td> 
+        <td class="score leaderboard">${team.score}</td> 
+        <td class="count leaderboard">${team.playerCount}</td>
       </tr>`;
     })
     .join("");
