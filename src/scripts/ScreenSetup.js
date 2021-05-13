@@ -83,57 +83,64 @@ document.addEventListener("change", (event) => {
 export const setupHTML = () => {
     return /*html*/ ` 
     <h1 class="logo">Truncheons & Flagons</h1>
-    <div class="selectTeamSection">
+    <section >
     <h2>Select Your Teams:</h2>
 	<div id="userInputInfo"></div>
     <div class="selectTeamSectionDropdown">
 
     ${SelectTeamsDropdownHtml()}
 
-        <button disabled="true" id="startGameButton" type="button" class="startGameButton">Start Game</button>
+        <button disabled="true" id="startGameButton" type="button" class="startGameButton button">Start Game</button>
     </div>
-    </div>
+    </section>
 
-    <h2>Add New Team:</h2>
+    <section class="addSection">
     
-    <div>
-    <form class="newTeamForm" onsubmit="return false">
+    <div class="formSection">
+    <form class="newTeamForm form" onsubmit="return false">
+    <h2>Add New Team:</h2>
         <div>
-        <input placeholder="Team Name:" type="text" id="teamName"/>
+        <input id="minus" class="formInput" placeholder="Team Name:" type="text" id="teamName"/>
         </div>
         <div>
-        <input disabled="true" id="teamSubmitButton" type="button" value="Add Team" />
+        <input disabled="true" id="teamSubmitButton" class="button formButton" type="button" value="Add Team" />
         </div>
     </form>
     </div>
 
+    
+    <div class="formSection">
+    <form class="newPlayerForm form">
     <h2>Add New Player:</h2>
-
-    <div>
-    <form class="newPlayerForm">
         <input
+        id="minus"
+        class="formInput"
         placeholder="First Name:"
         type="text"
         id="firstName"
         name="firstName"
-        /><br />
+        />
         <input
+        id="minus"
+        class="formInput"
         placeholder="Last Name:"
         type="text"
         id="lastName"
         name="lastName"
-        /><br /><br />
+        />
         <div>
-        <select id="selectedTeam" name="playerAddTeams">
+        <select class="formInput" id="selectedTeam" name="playerAddTeams">
             <option>Player's Team</option>
 
             ${AssignPlayerTeamHtml()}
 
         </select>
         </div>
-        <input disabled="true" id="playerSubmitButton" type="button" value="Add Player" />
+        <input disabled="true" id="playerSubmitButton" class="button formButton" type="button" value="Add Player" />
+
     </form>
     </div>
+    </section>
     `;
 };
 
@@ -166,7 +173,7 @@ export const SelectTeamsDropdownHtml = () => {
     // each run of the while loop will add a dropdown to select every team available.
     while (teamCounter < 4) {
         // opening tag for select dropdown
-        teamsHtml += `<div><select id="${teamCounter}" class="teamDropdown" name="teams">`;
+        teamsHtml += `<div><select id="${teamCounter}" class="teamDropdown formInput" name="teams">`;
         // adding number for currently selected team with teamCounter
         teamsHtml += `<option>Select team ${teamCounter}:</option>`;
         // mapping each option for every team to a string
