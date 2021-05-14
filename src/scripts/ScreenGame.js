@@ -19,7 +19,9 @@ export const gameHTML = () => {
     </div>
     </div>
     
+    <div class="results">
     <div class="winningResults">${winningResultsHTML()}</div>
     <div class="resetGame">${sumbitResultsButton()}</div>
+    </div>
   `;
 };
