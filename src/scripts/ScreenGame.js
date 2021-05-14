@@ -6,11 +6,11 @@ export const gameHTML = () => {
   <div class="game">
     <h1 class="logo">Truncheons & Flagons</h1>
 
-    <div class="scoreForm">
+    <div class="score-form">
       ${ScoreFormHTML()}
   </div>
 
-	<div class="teamScore" >
+	<div class="score-board" >
 		${ScoreBoardHTML()}
 </div>
   `;

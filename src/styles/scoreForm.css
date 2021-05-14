@@ -1,0 +1,61 @@
+.screenGame {
+	width: 45rem;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* Score Form */
+/* .score-form {
+	border: 2px solid black;
+} */
+
+.round {
+	/* border: 2px solid black; */
+	margin-top: 0;
+	text-align: center;
+	/* text-decoration: underline; */
+}
+
+.score-input {
+	text-align: center;
+}
+
+.score-field {
+	border: none;
+	margin: 1rem;
+}
+
+#saveScoreButton {
+	height: 3rem;
+}
+
+#scoreWarning {
+	color: red;
+	font-size: 1.5rem;
+}
+/* Score Board */
+.score-board {
+	/* border: 2px solid black; */
+	display: flex;
+	height: 5rem;
+	justify-content: space-between;
+	margin-top: 3rem;
+}
+
+.score-board-team {
+	/* border: 2px solid black; */
+	flex-basis: 25%;
+}
+
+.score-board-team {
+	text-align: center;
+}
+
+.score-board-team-name {
+	margin-top: 0px;
+}
+
+.team-score {
+	font-size: 1.5rem;
+}

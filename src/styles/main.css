@@ -1,6 +1,11 @@
 @import url("setup.css");
 @import "./intro.css";
-.logo {
-    text-align: center;
+@import "../styles/scoreForm.css";
+
+h1 {
+	font-size: 2rem;
 }
 
+.logo {
+	text-align: center;
+}
