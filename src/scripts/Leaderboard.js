@@ -1,18 +1,13 @@
-import {getTeams} from "./TeamsProvider.js";
+import {getTeams, getSortedTeams} from "./TeamsProvider.js";
 
 export const leaderboardHTML = () => {
-  let teams = getTeams();
-  // sort teams by score
-  teams.sort((teamA, teamB) => (teamA.score > teamB.score ? 1 : -1));
-
-  // since sort puts lowest scores first, reverse
-  teams.reverse();
+  let teams = getSortedTeams();
 
   // filter out teams with less than 3 players
   teams = teams.filter((team) => team.playerCount === 3);
 
-  // considering ties, figure out what place each team is in
-  teams = addPlaceNumberTo(teams);
+  // filter out teams with no score
+  teams = teams.filter((team) => team.score > 0);
 
   // open a table and create the header row
   let htmlString = `<table class="leaderboard">
@@ -32,19 +27,4 @@ export const leaderboardHTML = () => {
 
   htmlString += `</table>`;
   return htmlString;
-};
-
-const addPlaceNumberTo = (team) => {
-  let prevScore = null;
-  let placeCounter = 1;
-  team.forEach((t) => {
-    // if we arent looking at a tie with the last examined team, increment the place counter
-    // also if there's no prevScore we know we're at the start
-    if (prevScore && prevScore !== t.score) {
-      placeCounter++;
-    }
-    prevScore = t.score;
-    t.place = placeCounter;
-  });
-  return team;
 };
