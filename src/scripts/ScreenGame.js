@@ -1,8 +1,12 @@
-import { ScoreFormHTML } from "./ScoreForm.js";
+import {
+    ScoreFormHTML,
+    winningResultsHTML,
+    sumbitResultsButton,
+} from "./ScoreForm.js";
 import { ScoreBoardHTML } from "./ScoreBoard.js";
 
 export const gameHTML = () => {
-	return /*html*/ `
+    return /*html*/ `
   <div class="game">
     <h1 class="logo">Truncheons & Flagons</h1>
 
@@ -12,6 +16,10 @@ export const gameHTML = () => {
 
 	<div class="score-board" >
 		${ScoreBoardHTML()}
-</div>
+    </div>
+    </div>
+    
+    <div class="winningResults">${winningResultsHTML()}</div>
+    <div class="resetGame">${sumbitResultsButton()}</div>
   `;
 };
