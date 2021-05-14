@@ -100,7 +100,7 @@ export const setupHTML = () => {
     <form class="newTeamForm form" onsubmit="return false">
     <h2>Add New Team:</h2>
         <div>
-        <input id="minus" class="formInput" placeholder="Team Name:" type="text" id="teamName"/>
+        <input class="minus" class="formInput" placeholder="Team Name:" type="text" id="teamName"/>
         </div>
         <div>
         <input disabled="true" id="teamSubmitButton" class="button formButton" type="button" value="Add Team" />
@@ -113,7 +113,7 @@ export const setupHTML = () => {
     <form class="newPlayerForm form">
     <h2>Add New Player:</h2>
         <input
-        id="minus"
+        class="minus"
         class="formInput"
         placeholder="First Name:"
         type="text"
@@ -121,7 +121,7 @@ export const setupHTML = () => {
         name="firstName"
         />
         <input
-        id="minus"
+        class="minus"
         class="formInput"
         placeholder="Last Name:"
         type="text"
@@ -209,7 +209,7 @@ const TeamSelectMessage = (teamOneId, teamTwoId, teamThreeId) => {
         ).length;
         if (playersInTeam < 3) {
             const invalidTeam = teams.find((team) => team.id === teamId);
-            userMessage += `<div>${invalidTeam.name} only has ${playersInTeam} players. 3 is required.</div>`;
+            userMessage += `<div class="warning"><img id="warningIcon" src="./images/warning.png"> ${invalidTeam.name} only has ${playersInTeam} players. 3 are required. <img id="warningIcon" src="./images/warning.png"></div>`;
         }
     }
     document.getElementById("userInputInfo").innerHTML = userMessage;

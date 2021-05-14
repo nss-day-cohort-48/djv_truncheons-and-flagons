@@ -50,6 +50,16 @@
     left: 0;
 }
 
-#minus {
+.minus {
     width: 98.5%;
+}
+
+#warningIcon {
+    width: 1rem;
+    height: auto;
+}
+
+.warning {
+    color: red;
+    font-weight: bold;
 }
