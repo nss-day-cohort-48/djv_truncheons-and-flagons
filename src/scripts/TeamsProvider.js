@@ -9,14 +9,15 @@ export const getTeams = () => {
   // return countTeamScores(countTeamPlayers(teams, players), scores);
   teams = countTeamScores(teams, scores);
   teams = countTeamPlayers(teams, players);
-  teams = addPlaceNumberTo(teams);
   return teams.map((t) => ({...t}));
 };
 
 // convenience for when you wanna know who's WINNING
 // highest scores first
 export const getSortedTeams = () =>
-  getTeams().sort((teamA, teamB) => (teamA.score < teamB.score ? 1 : -1));
+  addPlaceNumberTo(
+    getTeams().sort((teamA, teamB) => (teamA.score < teamB.score ? 1 : -1))
+  );
 
 const addPlaceNumberTo = (teams) => {
   let prevScore = null;
