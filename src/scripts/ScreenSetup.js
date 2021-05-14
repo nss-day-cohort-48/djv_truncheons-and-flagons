@@ -17,7 +17,9 @@ document.addEventListener("click", (event) => {
             if (!TeamHasThreePlayers(playerTeamId)) {
                 addPlayer(firstName, lastName, playerTeamId);
             } else {
-                window.alert("Selected team already has 3 players");
+                document.getElementById(
+                    "userAddInputInfo"
+                ).innerHTML = `<div class="warning"><img id="warningIcon" src="./images/warning.png"> Selected team already has 3 players. Please select another team. <img id="warningIcon" src="./images/warning.png"></div>`;
                 return;
             }
         }
@@ -27,12 +29,13 @@ document.addEventListener("click", (event) => {
 document.addEventListener("click", (event) => {
     if (event.target.id === "teamSubmitButton") {
         const teamName = document.getElementById("teamName").value;
+        addTeam(teamName);
 
-        if (teamName) {
-            addTeam(teamName);
-        } else {
-            window.alert("Please complete all fields");
-        }
+        // if (teamName) {
+        //     addTeam(teamName);
+        // } else {
+        //     window.alert("Please complete all fields");
+        // }
     }
 });
 
@@ -93,6 +96,8 @@ export const setupHTML = () => {
         <button disabled="true" id="startGameButton" type="button" class="startGameButton button">Start Game</button>
     </div>
     </section>
+
+    <div id="userAddInputInfo"></div>
 
     <section class="addSection">
     

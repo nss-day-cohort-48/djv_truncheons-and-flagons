@@ -11,7 +11,6 @@ export const introHTML = () => {
 	return /*html*/ `
     <h1 class="logo">Truncheons & Flagons</h1>
     <div class="leaderboardContainer">
-      <h2 class="leaderboardHeader">Current Leaderboard</h2>
       ${leaderboardHTML()}
     </div>
     <div class="newGame" id="newGameButtonContainer">

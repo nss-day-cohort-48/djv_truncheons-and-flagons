@@ -9,8 +9,12 @@ export const leaderboardHTML = () => {
   // filter out teams with no score
   teams = teams.filter((team) => team.score > 0);
 
+  if (teams.length === 0) return ``;
+
   // open a table and create the header row
-  let htmlString = `<table class="leaderboard">
+  let htmlString = `
+  <h3 class="leaderboardHeader">Current Leaderboard</h3>
+  <table class="leaderboard">
     <tr class="leaderboard"><th>Rank</th><th>Team</th><th>Score</th><th>Players</th></tr>`;
 
   htmlString += teams
