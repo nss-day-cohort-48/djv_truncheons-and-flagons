@@ -1,4 +1,5 @@
 import { getGameState } from "./gameState.js";
+import { dispatchStateChanged } from "./helpers.js";
 import { getTeam } from "./TeamsProvider.js";
 
 export const ScoreBoardHTML = () => {
@@ -12,7 +13,7 @@ export const ScoreBoardHTML = () => {
     foundSecondTeam.score = currentGameState.pteams[2].score;
     foundThirdTeam.score = currentGameState.pteams[3].score;
 
-    currentlyWinningFontIncrease(foundThirdTeam, foundFirstTeam, foundThirdTeam);
+    currentlyWinningFontIncrease(foundFirstTeam, foundSecondTeam, foundThirdTeam);
 
     return /*html*/ `
 <div class="score-board-team">

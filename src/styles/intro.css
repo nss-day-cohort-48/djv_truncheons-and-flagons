@@ -7,7 +7,7 @@
 
 button.newGame {
 	height: 3rem;
-	width: 84.5%;
+	width: 52.5%;
 }
 
 .leaderboardContainer {
@@ -21,7 +21,7 @@ button.newGame {
 }
 
 table.leaderboard {
-	width: 80%;
+	width: 50%;
 }
 
 td.leaderboard {
@@ -34,6 +34,7 @@ td.place {
 
 /* table rounding */
 table.leaderboard {
+	background-color: #efefef;
 	border: 1px solid #ddd;
 	border-collapse: separate;
 	border-radius: 4px;
