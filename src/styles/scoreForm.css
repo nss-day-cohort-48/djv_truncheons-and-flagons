@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
 .screenGame {
     width: 45rem;
     text-align: center;
@@ -12,6 +14,9 @@
 /* .score-form {
 	border: 2px solid black;
 } */
+label {
+	font-family: 'Roboto Slab', serif;
+}
 
 .round {
     /* border: 2px solid black; */
@@ -52,6 +57,7 @@
 .score-board-team {
     /* border: 2px solid black; */
     flex-basis: 25%;
+
 }
 
 .score-board-team {

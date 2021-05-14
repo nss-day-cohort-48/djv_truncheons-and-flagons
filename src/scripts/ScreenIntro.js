@@ -1,4 +1,5 @@
 import {leaderboardHTML} from "./Leaderboard.js";
+import {InstructionsHTML} from "./Instructions.js";
 import {setupGame} from "./gameState.js";
 
 document.addEventListener("click", (event) => {
@@ -11,11 +12,11 @@ export const introHTML = () => {
   return /*html*/ `
     <h1 class="logo">Truncheons & Flagons</h1>
     <div class="leaderboardContainer">
-      <h3 class="leaderboardHeader">Current Leaderboard</h3>
       ${leaderboardHTML()}
     </div>
     <div class="newGame" id="newGameButtonContainer">
       <button class="newGame" id="newGameButton">Set Up New Game</button>
     </div>
+    <div class="instructions"> ${InstructionsHTML()} </div>
   `;
 };

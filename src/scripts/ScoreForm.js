@@ -60,17 +60,17 @@ export const ScoreFormHTML = () => {
         return /*html*/ `
    <h2 class="round" id="roundNumber">Round ${currentGameState.round} </h2>
    <fieldset class="score-field">
-	 <label for="firstTeam"><strong>${foundFirstTeam.name}</strong> are playing as the <strong>${foundFirstTeam.role}</strong></label>
+	 <label for="firstTeam"><strong>${foundFirstTeam.name}</strong> are the <strong>${foundFirstTeam.role}</strong></label>
 	 <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="3" value="0"/>
 	 </fieldset>
 	 <fieldset class="score-field">
 	 <!-- add team label -->
-	 <label for="secondTeam"><strong>${foundSecondTeam.name}</strong> are playing as the <strong>${foundSecondTeam.role}</strong></label>
+	 <label for="secondTeam"><strong>${foundSecondTeam.name}</strong> are the <strong>${foundSecondTeam.role}</strong></label>
 	 <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="3" value="0"/>
 	 </fieldset>
 	 <fieldset class="score-field">
 	 <!-- add team label -->
-	 <label for="thirdTeam"><strong>${foundThirdTeam.name}</strong> are playing as the <strong>${foundThirdTeam.role}</strong></label>
+	 <label for="thirdTeam"><strong>${foundThirdTeam.name}</strong> are the <strong>${foundThirdTeam.role}</strong></label>
 	 <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="6" value="0"/>
    </fieldset>
 	 <div id="scoreWarning"></div>
