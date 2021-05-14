@@ -15,14 +15,14 @@ export const ScoreBoardHTML = () => {
 	return /*html*/ `
 <div class="score-board-team">
   <h4 class="score-board-team-name">${foundFirstTeam.name}</h4>
-	<div id="teamScore1">Current Score is ${foundFirstTeam.score}</div>
+	<div class="team-score" id="teamScore1">${foundFirstTeam.score}</div>
 </div>
 <div class="score-board-team">
 	<h4 class="score-board-team-name">${foundSecondTeam.name}</h4>
-	<div  id="teamScore2">Current Score is ${foundSecondTeam.score}</div>
+	<div class="team-score" id="teamScore2">${foundSecondTeam.score}</div>
 </div>
 <div class="score-board-team" >
 	<h4 class="score-board-team-name">${foundThirdTeam.name}</h4>
-	<div id="teamScore3">Current Score is ${foundThirdTeam.score}</div>
+	<div class="team-score" id="teamScore3">${foundThirdTeam.score}</div>
   `;
 };

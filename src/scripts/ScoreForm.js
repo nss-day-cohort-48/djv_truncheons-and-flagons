@@ -17,19 +17,20 @@ export const ScoreFormHTML = () => {
 		return /*html*/ `
    <h2 class="round" id="roundNumber">Round ${currentGameState.round} </h2>
    <fieldset class="score-field">
-     <label for="firstTeam"><strong>${foundFirstTeam.name}</strong> are playing as the <strong>${foundFirstTeam.role}</strong></label>
-     <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="6" value="0"/>
+	 <label for="firstTeam"><strong>${foundFirstTeam.name}</strong> are playing as the <strong>${foundFirstTeam.role}</strong></label>
+	 <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="6" value="0"/>
    </fieldset>
    <fieldset class="score-field">
-     <!-- add team label -->
-     <label for="secondTeam"><strong>${foundSecondTeam.name}</strong> are playing as the <strong>${foundSecondTeam.role}</strong></label>
-     <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="3" value="0"/>
+	 <!-- add team label -->
+	 <label for="secondTeam"><strong>${foundSecondTeam.name}</strong> are playing as the <strong>${foundSecondTeam.role}</strong></label>
+	 <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="3" value="0"/>
    </fieldset>
    <fieldset class="score-field">
-     <!-- add team label -->
-     <label for="thirdTeam"><strong>${foundThirdTeam.name}</strong> are playing as the <strong>${foundThirdTeam.role}</strong></label>
-     <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="3" value="0"/>
+	 <!-- add team label -->
+	 <label for="thirdTeam"><strong>${foundThirdTeam.name}</strong> are playing as the <strong>${foundThirdTeam.role}</strong></label>
+	 <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="3" value="0"/>
    </fieldset>
+	 <div id="scoreWarning"></div>
    <button class="button" id="saveScoreButton">Save Round Scores</button>
  </div>
    `;
@@ -37,19 +38,20 @@ export const ScoreFormHTML = () => {
 		return /*html*/ `
    <h2 class="round" id="roundNumber">Round ${currentGameState.round} </h2>
    <fieldset class="score-field">
-     <label for="firstTeam"><strong>${foundFirstTeam.name}</strong> are playing as the <strong>${foundFirstTeam.role}</strong></label>
-     <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="3" value="0"/>
-     </fieldset>
-     <fieldset class="score-field">
-     <!-- add team label -->
-     <label for="secondTeam"><strong>${foundSecondTeam.name}</strong> are playing as the <strong>${foundSecondTeam.role}</strong></label>
-     <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="6" value="0"/>
-     </fieldset>
-     <fieldset class="score-field">
-     <!-- add team label -->
-     <label for="thirdTeam"><strong>${foundThirdTeam.name}</strong> are playing as the <strong>${foundThirdTeam.role}</strong></label>
-     <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="3" value="0"/>
+	 <label for="firstTeam"><strong>${foundFirstTeam.name}</strong> are playing as the <strong>${foundFirstTeam.role}</strong></label>
+	 <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="3" value="0"/>
+	 </fieldset>
+	 <fieldset class="score-field">
+	 <!-- add team label -->
+	 <label for="secondTeam"><strong>${foundSecondTeam.name}</strong> are playing as the <strong>${foundSecondTeam.role}</strong></label>
+	 <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="6" value="0"/>
+	 </fieldset>
+	 <fieldset class="score-field">
+	 <!-- add team label -->
+	 <label for="thirdTeam"><strong>${foundThirdTeam.name}</strong> are playing as the <strong>${foundThirdTeam.role}</strong></label>
+	 <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="3" value="0"/>
    </fieldset>
+	 <div id="scoreWarning"></div>
    <button class="button" id="saveScoreButton">Save Round Scores</button>
  </div>
    `;
@@ -57,19 +59,20 @@ export const ScoreFormHTML = () => {
 		return /*html*/ `
    <h2 class="round" id="roundNumber">Round ${currentGameState.round} </h2>
    <fieldset class="score-field">
-     <label for="firstTeam"><strong>${foundFirstTeam.name}</strong> are playing as the <strong>${foundFirstTeam.role}</strong></label>
-     <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="3" value="0"/>
-     </fieldset>
-     <fieldset class="score-field">
-     <!-- add team label -->
-     <label for="secondTeam"><strong>${foundSecondTeam.name}</strong> are playing as the <strong>${foundSecondTeam.role}</strong></label>
-     <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="3" value="0"/>
-     </fieldset>
-     <fieldset class="score-field">
-     <!-- add team label -->
-     <label for="thirdTeam"><strong>${foundThirdTeam.name}</strong> are playing as the <strong>${foundThirdTeam.role}</strong></label>
-     <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="6" value="0"/>
+	 <label for="firstTeam"><strong>${foundFirstTeam.name}</strong> are playing as the <strong>${foundFirstTeam.role}</strong></label>
+	 <input class="scoreInput" id="firstTeamScore" name="firstTeam" type="number" min="0" max="3" value="0"/>
+	 </fieldset>
+	 <fieldset class="score-field">
+	 <!-- add team label -->
+	 <label for="secondTeam"><strong>${foundSecondTeam.name}</strong> are playing as the <strong>${foundSecondTeam.role}</strong></label>
+	 <input class="scoreInput" id="secondTeamScore" name="secondTeam" type="number" min="0" max="3" value="0"/>
+	 </fieldset>
+	 <fieldset class="score-field">
+	 <!-- add team label -->
+	 <label for="thirdTeam"><strong>${foundThirdTeam.name}</strong> are playing as the <strong>${foundThirdTeam.role}</strong></label>
+	 <input class="scoreInput" id="thirdTeamScore" name="thirdTeam" type="number" min="0" max="6" value="0"/>
    </fieldset>
+	 <div id="scoreWarning"></div>
    <button class="button" id="saveScoreButton">Save Round Scores</button>
  </div>
    `;
@@ -105,14 +108,18 @@ document.addEventListener("click", (event) => {
 			secondTeamRoundScore < 0 ||
 			thirdTeamRoundScore < 0
 		) {
-			window.alert(`How did a team score negative points?`);
+			document.getElementById(
+				"scoreWarning"
+			).innerHTML = `How dideth a team scoreth negative points?`;
 			// handle total round score too large
 		} else if (totalRoundScore === 0) {
-			window.alert(`Someone had to have scored...`);
+			document.getElementById(
+				"scoreWarning"
+			).innerHTML = `One of ye shalt have scored.`;
 		} else if (totalRoundScore > 6) {
-			window.alert(
-				`There's no way y'all could have scored more than 6 points in a round.`
-			);
+			document.getElementById(
+				"scoreWarning"
+			).innerHTML = `Thou shalt not score more than 6 points in a round.`;
 			//check if roundNumber is 3 or greater
 		} else {
 			nextRound(firstTeamRoundScore, secondTeamRoundScore, thirdTeamRoundScore);
@@ -139,13 +146,11 @@ const winner = (teamsArray) => {
 		winningTeam.score === secondTeam.score &&
 		winningTeam.score === thirdTeam.score
 	) {
-		return window.alert(
-			`Hey ${winner}, ${team2}, and ${team3}... y'all tied. Time to duke it out.`
-		);
+		return window.alert(`Hey ${winner}, ${team2}, and ${team3} all tied!!!`);
 	} else if (winningTeam.score === secondTeam.score) {
-		return window.alert(`${winner} & ${team2} tied!! They beat the ${team3}!`);
+		return window.alert(`${winner} & ${team2} tied!!`);
 	} else {
-		return window.alert(`${winner} beat all y'all!!`);
+		return window.alert(`${winner} won!`);
 	}
 };
 

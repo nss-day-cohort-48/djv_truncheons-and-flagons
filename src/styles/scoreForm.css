@@ -29,6 +29,11 @@
 #saveScoreButton {
 	height: 3rem;
 }
+
+#scoreWarning {
+	color: red;
+	font-size: 1.5rem;
+}
 /* Score Board */
 .score-board {
 	/* border: 2px solid black; */
@@ -49,4 +54,8 @@
 
 .score-board-team-name {
 	margin-top: 0px;
+}
+
+.team-score {
+	font-size: 1.5rem;
 }
