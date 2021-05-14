@@ -35,6 +35,10 @@ strong {
 	font-size: 1.25rem;
 	/* font-family: 'MedievalSharp', cursive; */
 }
+th {
+	font-size: 1.25rem;
+	text-decoration: underline;
+}
 .logo {
 	font-family: 'MedievalSharp', cursive;
 	font-size: 3rem;
