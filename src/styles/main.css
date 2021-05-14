@@ -1,53 +1,56 @@
 @import url("setup.css");
 @import "./intro.css";
-@import "../styles/scoreForm.css";
-@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Medula+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+@import "./scoreForm.css";
+@import "./instructions.css";
+@import url("https://fonts.googleapis.com/css2?family=MedievalSharp&family=Medula+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
 
 html {
 	background-color: #a8ac77;
 }
 body {
-	font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
 }
 button {
-	font-family: 'Roboto Slab', serif;
-	font-size: 1rem;
+  font-family: "Roboto Slab", serif;
+  font-size: 1rem;
 }
 h1,
 h2,
 h3,
 h4 {
-	font-size: 1.5rem;
-	font-family: 'MedievalSharp', cursive;
+  font-size: 1.5rem;
+  font-family: "MedievalSharp", cursive;
 }
 h1 {
 	text-shadow: 1px 2px 5px #666;
 }
 h2 {
+
 	font-size: 2rem;
 	font-family: 'MedievalSharp', cursive;
 	text-shadow: 1px 2px 5px #666;
+
 }
 input {
-	font-family: 'Roboto Slab', serif;
-	font-size: 1rem;
+  font-family: "Roboto Slab", serif;
+  font-size: 1rem;
 }
 select {
-	font-family: 'Roboto Slab', serif;
-	font-size: 1rem;
+  font-family: "Roboto Slab", serif;
+  font-size: 1rem;
 }
 strong {
-	font-weight: 1000;
-	font-size: 1.25rem;
-	/* font-family: 'MedievalSharp', cursive; */
+  font-weight: 1000;
+  font-size: 1.25rem;
+  /* font-family: 'MedievalSharp', cursive; */
 }
 th {
-	font-size: 1.25rem;
-	text-decoration: underline;
+  font-size: 1.25rem;
+  text-decoration: underline;
 }
 .logo {
-	font-family: 'MedievalSharp', cursive;
-	font-size: 3rem;
-	text-align: center;
+  font-family: "MedievalSharp", cursive;
+  font-size: 3rem;
+  text-align: center;
 }
